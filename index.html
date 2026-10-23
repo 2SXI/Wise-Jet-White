@@ -1,1482 +1,202 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wise Jet Cranes | Architectural Lifting & Heavy Rigging Zimbabwe</title>
-    <meta name="description" content="Wise Jet Cranes delivers precision lifting solutions, mobile crane rentals, and heavy logistics engineered to international safety standards. Based in Harare, serving Zimbabwe.">
-    
-    <!-- Google Fonts: Space Grotesk (Tech Headings) & Plus Jakarta Sans (Clean Body) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        tech: {
-                            blue: '#0A1D37',
-                            steel: '#3A4F66',
-                            orange: '#FF5E14',
-                            yellow: '#FFB800',
-                            gray: '#F3F4F6',
-                            border: '#E2E8F0',
-                            darkest: '#030A16'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Plus Jakarta Sans', 'sans-serif'],
-                        tech: ['Space Grotesk', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
-
-    <style>
-        /* Tech Grid & Blueprint Background Effect */
-        .tech-grid {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(10, 29, 55, 0.03) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(10, 29, 55, 0.03) 1px, transparent 1px);
-        }
-        .tech-grid-dark {
-            background-size: 40px 40px;
-            background-image: 
-                linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-                linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-        }
-
-        /* Custom Scroll Progress Bar */
-        #scrollProgress {
-            position: fixed;
-            top: 0;
-            left: 0;
-            height: 4px;
-            background: linear-gradient(to right, #FF5E14, #FFB800);
-            z-index: 100;
-            width: 0%;
-            transition: width 0.1s ease-out;
-        }
-
-        /* Reveal Animations */
-        .reveal {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Custom Hover Cards */
-        .spec-card {
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .spec-card:hover {
-            border-color: #FF5E14;
-            box-shadow: 0 10px 30px rgba(255, 94, 20, 0.08);
-        }
-
-        /* Sticky Nav: transparent over hero, solid on scroll */
-        #navbar {
-            background: transparent;
-            border-bottom-color: transparent;
-        }
-        #navbar.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            border-bottom-color: #E2E8F0;
-            box-shadow: 0 4px 24px rgba(10, 29, 55, 0.06);
-        }
-        #navbar .nav-link { color: rgba(255, 255, 255, 0.88); }
-        #navbar.scrolled .nav-link { color: rgba(10, 29, 55, 0.8); }
-        #navbar .nav-link.active { color: #FFB800; }
-        #navbar.scrolled .nav-link.active { color: #FF5E14; }
-        #navbar .nav-link.active::after { background: #FFB800; }
-        #navbar.scrolled .nav-link.active::after { background: #FF5E14; }
-        #navbar .brand-title { color: #ffffff; }
-        #navbar.scrolled .brand-title { color: #0A1D37; }
-        #navbar .menu-icon { color: #ffffff; }
-        #navbar.scrolled .menu-icon { color: #0A1D37; }
-        #navbar .cta-btn {
-            background: #FF5E14;
-        }
-        #navbar.scrolled .cta-btn {
-            background: #0A1D37;
-        }
-        #navbar .cta-btn:hover { background: #FFB800; color: #0A1D37; }
-
-        .nav-link {
-            position: relative;
-            padding-bottom: 4px;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            width: 0%;
-            height: 2px;
-            background: currentColor;
-            transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .nav-link:hover::after {
-            width: 100%;
-        }
-
-        /* Hero */
-        #hero-bg {
-            background-image: linear-gradient(120deg, rgba(3,10,22,0.92) 0%, rgba(10,29,55,0.85) 45%, rgba(10,29,55,0.55) 100%), url('https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=2000&q=80');
-            background-size: cover;
-            background-position: center 65%;
-        }
-
-        /* Service Cards */
-        .service-card {
-            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease;
-        }
-        .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 24px 48px -12px rgba(10, 29, 55, 0.18);
-            border-color: #FF5E14;
-        }
-        .service-card .icon-box {
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .service-card:hover .icon-box {
-            background: #FF5E14;
-            transform: scale(1.08) rotate(-4deg);
-        }
-        .service-card:hover .icon-box svg {
-            stroke: white;
-        }
-
-        /* Gallery */
-        .gallery-item {
-            position: relative;
-            overflow: hidden;
-            cursor: zoom-in;
-        }
-        .gallery-item img {
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .gallery-item:hover img {
-            transform: scale(1.08);
-        }
-        .gallery-overlay {
-            opacity: 0;
-            transition: opacity 0.4s ease;
-            background: linear-gradient(to top, rgba(3,10,22,0.92) 0%, rgba(3,10,22,0.2) 60%, transparent 100%);
-        }
-        .gallery-item:hover .gallery-overlay {
-            opacity: 1;
-        }
-
-        /* Lightbox */
-        #lightbox {
-            transition: opacity 0.3s ease;
-        }
-        #lightbox img {
-            transition: transform 0.3s ease;
-        }
-
-        /* Article Cards */
-        .article-card {
-            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .article-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px -12px rgba(10, 29, 55, 0.15);
-        }
-        .article-card .article-img {
-            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .article-card:hover .article-img {
-            transform: scale(1.06);
-        }
-
-        /* Testimonials */
-        .testimonial-slide {
-            display: none;
-            animation: fadeInSlide 0.6s ease;
-        }
-        .testimonial-slide.active-slide { display: block; }
-        @keyframes fadeInSlide {
-            from { opacity: 0; transform: translateY(12px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        .testi-dot {
-            width: 8px; height: 8px; border-radius: 999px;
-            background: #E2E8F0;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-        .testi-dot.active-dot {
-            background: #FF5E14;
-            width: 24px;
-        }
-
-        /* WhatsApp Floating Button */
-        #whatsappBtn {
-            position: fixed;
-            bottom: 24px;
-            right: 24px;
-            z-index: 60;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        #whatsappBtn:hover {
-            transform: scale(1.08);
-        }
-
-        /* Back to top */
-        #backToTop {
-            position: fixed;
-            bottom: 24px;
-            left: 24px;
-            z-index: 60;
-            opacity: 0;
-            pointer-events: none;
-            transition: all 0.3s ease;
-        }
-        #backToTop.show {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-            .reveal, .service-card, .gallery-item img, .article-card, .testimonial-slide { transition: none !important; animation: none !important; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wisejet Cranes | Crane Hire & Heavy Lifting in Zimbabwe — Up to 250 Tonnes</title>
+<meta name="description" content="Wisejet Cranes: mobile crane hire, heavy lifting, rigging, specialised transport and access platforms across Zimbabwe. Lift capacities from 5 to 250 tonnes. Based in Harare. Get a quote today.">
+<link rel="canonical" href="https://wisejetcranes.co.zw/">
+<meta name="theme-color" content="#14181d">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wisejet Cranes | Crane Hire & Heavy Lifting in Zimbabwe">
+<meta property="og:description" content="Safe, efficient and reliable lifting solutions up to 250 tonnes, nationwide.">
+<meta property="og:image" content="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-16-16-14-51.jpg">
+<link rel="icon" href="https://wisejetcranes.co.zw/wp-content/uploads/2020/04/cropped-crane-32x32.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"LocalBusiness","name":"Wisejet Cranes","url":"https://wisejetcranes.co.zw/","image":"https://wisejetcranes.co.zw/wp-content/uploads/2020/04/logo.jpeg","telephone":"+263718323920","email":"info@wisejetcranes.co.zw","address":{"@type":"PostalAddress","streetAddress":"200 Robert Mugabe Road","addressLocality":"Harare","addressCountry":"ZW"},"areaServed":"Zimbabwe","description":"Crane hire, heavy lifting, rigging and specialised transport in Zimbabwe.","openingHoursSpecification":[{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday"],"opens":"08:00","closes":"17:00"},{"@type":"OpeningHoursSpecification","dayOfWeek":"Saturday","opens":"08:00","closes":"13:00"}],"sameAs":["https://www.facebook.com/hirecranes/","https://x.com/wisejetcranes","https://www.linkedin.com/in/wise-jet-cranes-02b6a3133/"]}
+</script>
+<link rel="stylesheet" href="styles.css">
 </head>
-<body class="bg-white text-tech-blue font-sans overflow-x-hidden antialiased">
+<body>
+<a class="skip" href="#main">Skip to content</a>
 
-    <!-- Scroll Progress -->
-    <div id="scrollProgress"></div>
 
-    <!-- Top Utility Bar -->
-    <div class="bg-tech-blue text-white text-xs py-2 px-6 lg:px-12 flex justify-between items-center border-b border-white/10">
-        <div class="flex items-center gap-6">
-            <span class="flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-tech-orange"></span>
-                Headquarters: Harare, Zimbabwe
-            </span>
-            <span class="hidden md:inline-flex items-center gap-2">
-                <span class="w-1.5 h-1.5 rounded-full bg-tech-yellow"></span>
-                Nationwide Mobilization Cover
-            </span>
-        </div>
-        <div class="flex items-center gap-4">
-            <a href="mailto:info@wisejetcranes.co.zw" class="hover:text-tech-orange transition-colors">info@wisejetcranes.co.zw</a>
-            <span class="text-white/30">|</span>
-            <a href="tel:+263718323920" class="hover:text-tech-orange transition-colors font-semibold">+263 71 832 3920</a>
-        </div>
+<header><div class="wrap nav">
+ <a class="logo" href="#top" aria-label="Wisejet Cranes home"><img src="https://wisejetcranes.co.zw/wp-content/uploads/2020/04/logo.jpeg" alt="Wisejet Cranes logo" width="125" height="46"></a>
+ <button class="burger" aria-label="Open menu" aria-expanded="false" id="burger"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg></button>
+ <nav class="menu" id="menu" aria-label="Main">
+  <a href="#services">Services</a><a href="#about">About</a><a href="#work">Projects</a><a href="blog.html">Insights</a><a href="#process">How It Works</a><a href="#contact">Contact</a>
+  <a class="tel" href="tel:+263718323920">+263 718 323 920</a><a class="btn btn-primary" href="#contact">Get a Quote</a>
+ </nav>
+</div></header>
+
+<main id="main">
+<section class="hero" id="top">
+ <div class="hero-bg" role="img" aria-label="Wisejet mobile crane at work"></div>
+ <div class="wrap">
+  <span class="badge"><i></i> Lifting up to 250 tonnes</span>
+  <h1>We lift <em>what others</em> can’t.</h1>
+  <p>Zimbabwe’s trusted partner for crane hire, heavy lifting and rigging. Safe, efficient and reliable, on site wherever your project is.</p>
+  <div class="cta">
+   <a class="btn btn-primary" href="#contact">Request a Free Quote →</a>
+   <a class="btn btn-ghost" href="tel:+263718323920">Call +263 718 323 920</a>
+  </div>
+  <div class="hero-stats">
+   <div><b>10+</b><span>Years in operation</span></div>
+   <div><b>5–250T</b><span>Lifting range</span></div>
+   <div><b>Nationwide</b><span>Zimbabwe coverage</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="trust" aria-label="Clients">
+ <div class="wrap"><small>Trusted by</small>
+  <ul><li>ZETDC</li><li>University of Zimbabwe</li><li>Zimbabwe Leaf Tobacco</li><li>Masimba Holdings</li></ul>
+ </div>
+</section>
+
+<section class="sec" id="services">
+ <div class="wrap center">
+  <span class="eyebrow">What we do</span>
+  <h2>Complete lifting solutions</h2>
+  <p class="lead">One partner from planning to final placement. Tell us the load, we’ll bring the right machine and crew.</p>
+  <div class="rows"><a class="svc rv" href="#contact"><span class="n">01</span><h3>Crane Hire</h3><p>A modern fleet of mobile cranes from 5 up to 200 tonnes for every heavy lifting need.</p><span class="go">Get a quote</span></a><a class="svc rv" href="#contact"><span class="n">02</span><h3>Heavy Lifting</h3><p>A hydraulic mobile crane fleet built for the toughest loads, with safe, precise placement.</p><span class="go">Get a quote</span></a><a class="svc rv" href="#contact"><span class="n">03</span><h3>Rigging</h3><p>The right equipment and skill for the whole lift, from slinging to signalling, for a complete solution.</p><span class="go">Get a quote</span></a><a class="svc rv" href="#contact"><span class="n">04</span><h3>Specialised Transport</h3><p>Our truck fleet and transport partners move your cargo swiftly and safely to its destination.</p><span class="go">Get a quote</span></a><a class="svc rv" href="#contact"><span class="n">05</span><h3>Access Platforms</h3><p>Articulated boom lifts, telescopic platforms, scissor lifts and telehandlers for smooth manoeuvrability.</p><span class="go">Get a quote</span></a><a class="svc rv" href="#contact"><span class="n">06</span><h3>Project Management</h3><p>Lift planning and consultancy that make your project hassle-free, tailor-made to your site.</p><span class="go">Get a quote</span></a></div>
+ </div>
+</section>
+
+<section class="sec dark" id="about">
+ <div class="wrap">
+  <div class="split">
+   <div class="photo rv">
+    <img src="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-15-16-47-54.jpg" alt="Wisejet crane operation on site" loading="lazy">
+    <div class="tag"><b>250T</b><span>Max lift capacity</span></div>
+   </div>
+   <div class="rv">
+    <span class="eyebrow">About Wisejet</span>
+    <h2>Your lifting partner of choice</h2>
+    <p class="lead">Wisejet Cranes is a reliable mobile crane company with over a decade of experience. Our fleet is one of the biggest nationwide, and we’re accessible throughout Zimbabwe for ease of doing business.</p>
+    <ul class="checks">
+     <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><span><b>Passionate and committed.</b> We treat every client as a treasured partner.</span></li>
+     <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><span><b>Tailor-made solutions.</b> Lifting plans designed around your project, not ours.</span></li>
+     <li><svg viewBox="0 0 24 24"><path d="M5 13l4 4L19 7"/></svg><span><b>Safe, efficient, reliable.</b> Professional crews and well-maintained machines.</span></li>
+    </ul>
+    <a class="btn btn-primary" href="#contact">Discuss Your Project</a>
+   </div>
+  </div>
+  <div class="range rv">
+   <h3>A crane for every load</h3>
+   <p class="lead" style="color:#a9b6c6">From light utility lifts to the heaviest industrial installations.</p>
+   <div class="bar" id="bar"><i></i></div>
+   <div class="scale"><span>5 tonnes</span><span>100 tonnes</span><span>250 tonnes</span></div>
+  </div>
+ </div>
+</section>
+
+<section class="sec" id="work">
+ <div class="wrap center">
+  <span class="eyebrow">Projects</span>
+  <h2>Proven on real sites</h2>
+  <p class="lead">A look at recent lifting operations. Tap any photo to enlarge.</p>
+  <div class="gal">
+   <a href="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-20-14-35-55.jpg"><img loading="lazy" src="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-20-14-35-55-1024x768.jpg" alt="Wisejet crane lifting on a project site"></a>
+   <a href="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-15-16-41-42.jpg"><img loading="lazy" src="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-15-16-41-42.jpg" alt="Mobile crane operation"></a>
+   <a href="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-15-16-40-30.jpg"><img loading="lazy" src="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-15-16-40-30.jpg" alt="Heavy lift in progress"></a>
+   <a href="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-18-16-24-15-Copy.jpg"><img loading="lazy" src="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-18-16-24-15-Copy.jpg" alt="Wisejet crane at work"></a>
+   <a href="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-15-16-47-54.jpg"><img loading="lazy" src="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-15-16-47-54.jpg" alt="Crane positioned for a lift"></a>
+  </div>
+  <p style="margin-top:30px"><a class="btn btn-primary" href="https://wisejetcranes.co.zw/projects-gallery/" target="_blank" rel="noopener">See Full Projects Gallery</a></p>
+ </div>
+</section>
+
+<section class="sec news" id="insights"><div class="wrap center"><span class="eyebrow">Insights</span><h2>Blogs &amp; articles</h2><p class="lead">Practical guidance on lifting, planning and site safety from our team.</p><div class="grid g3" style="text-align:left"><a class="post rv" href="how-to-choose-the-right-crane-size.html" data-cat="Planning"><div class="im"><img loading="lazy" src="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-15-16-47-54.jpg" alt="How to Choose the Right Crane Size for Your Lift"></div><div class="tx"><span class="meta"><b>Planning</b> &nbsp;·&nbsp; October 12, 2026</span><h3>How to Choose the Right Crane Size for Your Lift</h3><p>Weight alone does not decide the crane. Radius, boom length and ground conditions matter just as much.</p><span class="more">Read article →</span></div></a><a class="post rv" href="ground-conditions-and-outrigger-support.html" data-cat="Safety"><div class="im"><img loading="lazy" src="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-20-14-35-55.jpg" alt="Ground Conditions: The Overlooked Part of Every Safe Lift"></div><div class="tx"><span class="meta"><b>Safety</b> &nbsp;·&nbsp; September 28, 2026</span><h3>Ground Conditions: The Overlooked Part of Every Safe Lift</h3><p>A crane is only as stable as the ground beneath it. Here is what we look at before a machine is set up.</p><span class="more">Read article →</span></div></a><a class="post rv" href="lift-planning-checklist.html" data-cat="Planning"><div class="im"><img loading="lazy" src="https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-15-16-41-42.jpg" alt="A Practical Lift Planning Checklist for Site Managers"></div><div class="tx"><span class="meta"><b>Planning</b> &nbsp;·&nbsp; September 10, 2026</span><h3>A Practical Lift Planning Checklist for Site Managers</h3><p>Ten questions to answer before any heavy lift, so the day itself is uneventful.</p><span class="more">Read article →</span></div></a></div><p style="margin-top:40px"><a class="btn btn-primary" href="blog.html">View all articles</a></p></div></section>
+<section class="sec dark" id="process">
+ <div class="wrap">
+  <span class="eyebrow">How it works</span>
+  <h2>From call to lift in four steps</h2>
+  <div class="steps">
+   <div class="step rv"><h3>Tell us the job</h3><p>Call, WhatsApp or send the form with load, height and location.</p></div>
+   <div class="step rv"><h3>Get your quote</h3><p>We recommend the right crane and crew and send a clear quotation.</p></div>
+   <div class="step rv"><h3>We mobilise</h3><p>Equipment and certified crew arrive on site, planned and prepared.</p></div>
+   <div class="step rv"><h3>Safe lift, done</h3><p>The job is executed safely and efficiently, on schedule.</p></div>
+  </div>
+ </div>
+</section>
+
+<section class="band">
+ <div class="wrap">
+  <h2>Got a heavy lift coming up? Let’s plan it.</h2>
+  <a class="btn" href="tel:+263718323920">Call +263 718 323 920</a>
+ </div>
+</section>
+
+<section class="sec" id="contact">
+ <div class="wrap">
+  <div class="contact">
+   <div class="rv">
+    <span class="eyebrow">Contact</span>
+    <h2>Request your quotation</h2>
+    <p class="lead">Share your requirements and we’ll respond quickly with the best quotation to meet them.</p>
+    <div class="info">
+     <div><svg viewBox="0 0 24 24"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 005 5L15 13l5 2v4a2 2 0 01-2 2A16 16 0 013 6a2 2 0 012-2z"/></svg><span><b>Phone</b><a href="tel:+263718323920">+263 718 323 920</a> · <a href="tel:+263733248558">+263 733 248 558</a></span></div>
+     <div><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 6 9-6"/></svg><span><b>Email</b><a href="mailto:sales@wisejetcranes.co.zw">sales@wisejetcranes.co.zw</a><br><a href="mailto:info@wisejetcranes.co.zw">info@wisejetcranes.co.zw</a></span></div>
+     <div><svg viewBox="0 0 24 24"><path d="M12 21s7-6.2 7-12a7 7 0 10-14 0c0 5.8 7 12 7 12z"/><circle cx="12" cy="9" r="2.5"/></svg><span><b>Office</b>200 Robert Mugabe Road, Harare</span></div>
+     <div><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg><span><b>Hours</b>Mon–Fri 8am–5pm · Sat 8am–1pm</span></div>
     </div>
-
-    <!-- Main Navigation Header -->
-    <header class="sticky top-0 backdrop-blur-md z-50 border-b transition-all duration-300" id="navbar">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 h-20 flex items-center justify-between">
-            <!-- Brand Identity -->
-            <a href="#" class="flex items-center gap-3 select-none" aria-label="Wise Jet Cranes Home">
-                <div class="w-10 h-10 bg-tech-blue flex items-center justify-center rounded border border-tech-blue/10 shrink-0">
-                    <svg viewBox="0 0 200 200" class="w-8 h-8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M40 50 L90 30 L90 150 L40 120 Z" fill="#FFFFFF" opacity="0.9" />
-                        <path d="M160 50 L110 30 L110 150 L160 120 Z" fill="#FFFFFF" opacity="0.9" />
-                        <path d="M75 160 L125 160 L100 105 Z" fill="#FF5E14" />
-                        <circle cx="85" cy="45" r="5" fill="#FF5E14" />
-                        <circle cx="115" cy="45" r="5" fill="#FF5E14" />
-                        <path d="M100 45 L100 90 C100 105 80 105 80 90 C80 82 88 82 88 90 C88 95 94 95 94 90" stroke="#0A1D37" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
-                    </svg>
-                </div>
-                <div class="flex flex-col">
-                    <span class="font-tech text-xl font-bold tracking-tight uppercase leading-none brand-title transition-colors duration-300">Wise Jet</span>
-                    <span class="text-[10px] tracking-[0.3em] uppercase text-tech-orange font-bold leading-none mt-1">Cranes</span>
-                </div>
-            </a>
-
-            <!-- Navigation Links -->
-            <nav class="hidden lg:flex items-center gap-8 font-tech text-sm font-medium">
-                <a href="#about" class="nav-link transition-colors" data-nav>Philosophy</a>
-                <a href="#services" class="nav-link transition-colors" data-nav>Services</a>
-                <a href="#fleet" class="nav-link transition-colors" data-nav>Fleet Specifications</a>
-                <a href="#calculator" class="nav-link transition-colors" data-nav>Lift Estimator</a>
-                <a href="#projects" class="nav-link transition-colors" data-nav>Operations</a>
-                <a href="#news" class="nav-link transition-colors" data-nav>News</a>
-                <a href="#faq" class="nav-link transition-colors" data-nav>Safety FAQ</a>
-            </nav>
-
-            <!-- Actions -->
-            <div class="hidden lg:flex items-center gap-6">
-                <a href="#contact" class="cta-btn px-5 py-2.5 text-white font-tech text-xs tracking-wider uppercase font-bold rounded transition-all duration-300">
-                    Get Rigging Plan
-                </a>
-            </div>
-
-            <!-- Mobile Hamburger Menu Button -->
-            <button class="lg:hidden menu-icon focus:outline-none transition-colors duration-300" id="menuToggle" aria-label="Toggle navigation menu">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7"/></svg>
-            </button>
-        </div>
-    </header>
-
-    <!-- Mobile Navigation Drawer -->
-    <div class="fixed inset-0 bg-tech-blue/98 backdrop-blur-lg z-40 hidden flex-col justify-center items-center px-6 transition-all duration-300" id="mobileDrawer">
-        <nav class="flex flex-col gap-5 text-center font-tech text-lg text-white">
-            <a href="#about" class="hover:text-tech-orange mobile-item transition-colors">Philosophy</a>
-            <a href="#services" class="hover:text-tech-orange mobile-item transition-colors">Services</a>
-            <a href="#fleet" class="hover:text-tech-orange mobile-item transition-colors">Fleet Specifications</a>
-            <a href="#calculator" class="hover:text-tech-orange mobile-item transition-colors">Lift Estimator</a>
-            <a href="#projects" class="hover:text-tech-orange mobile-item transition-colors">Operations</a>
-            <a href="#news" class="hover:text-tech-orange mobile-item transition-colors">News</a>
-            <a href="#faq" class="hover:text-tech-orange mobile-item transition-colors">Safety FAQ</a>
-            <a href="#contact" class="px-8 py-3 bg-tech-orange text-white text-xs font-bold uppercase rounded mt-4 mobile-item">Request Quote</a>
-        </nav>
-        <button class="absolute top-6 right-6 text-white" id="closeDrawer" aria-label="Close menu">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
+   </div>
+   <form id="qf" class="rv">
+    <div class="row">
+     <div><label for="n">Name / Company</label><input id="n" required autocomplete="name"></div>
+     <div><label for="p">Phone</label><input id="p" type="tel" required autocomplete="tel"></div>
     </div>
-
-    <!-- Hero Section: Full-width Crane Image with Dark Overlay -->
-    <section class="relative min-h-[92vh] flex items-center justify-center overflow-hidden -mt-20 pt-20" id="hero">
-        <div id="hero-bg" class="absolute inset-0 w-full h-full"></div>
-        <div class="absolute inset-0 tech-grid-dark opacity-40"></div>
-
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 w-full grid lg:grid-cols-12 gap-12 items-center relative z-10 py-24">
-
-            <div class="lg:col-span-7 flex flex-col justify-center reveal active">
-                <span class="text-xs font-bold uppercase tracking-[0.25em] text-tech-yellow mb-4 block font-tech">Industrial Rigging Engineers · Est. Harare</span>
-                <h1 class="font-tech text-4xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white leading-[1.05] mb-6">
-                    Every Lift.<br>
-                    <span class="text-tech-orange">Engineered.</span><br>
-                    Every Time <span class="text-tech-yellow">Certain.</span>
-                </h1>
-                <p class="text-white/80 text-base sm:text-lg max-w-xl mb-10 leading-relaxed">
-                    Wise Jet Cranes delivers heavy lifting logistics, mobile crawler crane leasing, and expert rigging solutions engineered to international safety standards &mdash; deployed nationwide from our Harare hub.
-                </p>
-                <div class="flex flex-col sm:flex-row gap-4">
-                    <a href="#contact" class="px-8 py-4 bg-tech-orange text-white font-tech text-xs tracking-wider uppercase font-bold rounded hover:bg-tech-yellow hover:text-tech-blue transition-all duration-300 text-center shadow-lg shadow-tech-orange/20">
-                        Get a Quote
-                    </a>
-                    <a href="#calculator" class="px-8 py-4 border-2 border-white/40 text-white font-tech text-xs tracking-wider uppercase font-bold rounded hover:bg-white hover:text-tech-blue hover:border-white transition-all duration-300 text-center backdrop-blur-sm">
-                        Open Spec Estimator
-                    </a>
-                </div>
-
-                <!-- Trust strip -->
-                <div class="flex flex-wrap items-center gap-x-10 gap-y-4 mt-12 pt-8 border-t border-white/15">
-                    <div>
-                        <span class="font-tech text-2xl font-bold text-white block">15+</span>
-                        <span class="text-[11px] text-white/60 uppercase tracking-wider">Years Experience</span>
-                    </div>
-                    <div>
-                        <span class="font-tech text-2xl font-bold text-white block">500T</span>
-                        <span class="text-[11px] text-white/60 uppercase tracking-wider">Max Payload Class</span>
-                    </div>
-                    <div>
-                        <span class="font-tech text-2xl font-bold text-white block">100%</span>
-                        <span class="text-[11px] text-white/60 uppercase tracking-wider">Safety Record</span>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Floating Machinery Wireframe Asset Box -->
-            <div class="lg:col-span-5 relative flex justify-center items-center reveal active">
-                <div class="bg-white/95 backdrop-blur border border-white/20 rounded-xl p-6 w-full max-w-md shadow-2xl relative">
-                    <div class="absolute -top-3 -left-3 bg-tech-orange text-white text-[10px] font-bold px-3 py-1 uppercase font-tech tracking-wider rounded shadow-lg">
-                        Active Heavy Spec
-                    </div>
-                    <!-- Blueprint visual container -->
-                    <div class="aspect-square bg-tech-gray rounded-lg border border-tech-border flex items-center justify-center relative p-8 mb-6 overflow-hidden">
-                        <!-- Abstract Crane SVG -->
-                        <svg viewBox="0 0 100 100" class="w-3/4 h-3/4 text-tech-blue/20 stroke-current stroke-1" fill="none">
-                            <line x1="10" y1="90" x2="90" y2="90" />
-                            <line x1="30" y1="90" x2="60" y2="20" stroke="#0A1D37" stroke-width="2" />
-                            <line x1="60" y1="20" x2="90" y2="20" stroke="#FF5E14" stroke-width="2" />
-                            <circle cx="60" cy="20" r="3" fill="#FF5E14" />
-                            <line x1="90" y1="20" x2="90" y2="50" stroke="#FF5E14" stroke-dasharray="2,2" />
-                            <path d="M88 50 L92 50 L90 56 Z" fill="#0A1D37" />
-                        </svg>
-                        <div class="absolute bottom-3 left-3 text-[10px] text-tech-steel font-tech uppercase">Scale Blueprint: Demag-Z12</div>
-                    </div>
-                    <div class="flex justify-between items-center text-xs">
-                        <div>
-                            <span class="block text-tech-steel">Max Capacity Class</span>
-                            <span class="font-tech font-bold text-tech-blue text-lg">220 Tons</span>
-                        </div>
-                        <div class="text-right">
-                            <span class="block text-tech-steel">Main Boom Reach</span>
-                            <span class="font-tech font-bold text-tech-blue text-lg">68 Meters</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-
-        <!-- Scroll cue -->
-        <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden sm:flex flex-col items-center gap-2 text-white/50 text-[10px] uppercase tracking-widest font-tech">
-            <span>Scroll</span>
-            <svg class="w-4 h-4 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/></svg>
-        </div>
-    </section>
-
-    <!-- Engineering Philosophy Section -->
-    <section class="py-24 bg-white" id="about">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                <div class="reveal">
-                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-tech-orange mb-3 block font-tech">Safety & Logistics Standard</span>
-                    <h2 class="font-tech text-3xl sm:text-5xl font-bold tracking-tight text-tech-blue mb-6">
-                        Calculated Lifts. Guaranteed Structural Protection.
-                    </h2>
-                    <p class="text-tech-steel mb-6 leading-relaxed text-sm sm:text-base">
-                        Wise Jet Cranes provides reliable lifting equipment with a team that has over 15 years of operational excellence in complex rigging maneuvers. We manage heavy industrial lifting challenges, ensuring compliance with both local and international safety standards.
-                    </p>
-                    <p class="text-tech-steel mb-8 leading-relaxed text-sm">
-                        From project site inspection and route clearance planning to final crane positioning and rigging assembly, our specialized crews use modern technology to eliminate on-site guesswork.
-                    </p>
-                    <div class="grid grid-cols-2 gap-6">
-                        <div class="border-l-4 border-tech-orange pl-4">
-                            <span class="font-tech text-3xl font-bold text-tech-blue block stat-counter" data-target="15">0</span><span class="font-tech text-3xl font-bold text-tech-blue">+</span>
-                            <span class="text-xs text-tech-steel uppercase block mt-1">Years Experience</span>
-                        </div>
-                        <div class="border-l-4 border-tech-blue pl-4">
-                            <span class="font-tech text-3xl font-bold text-tech-blue block stat-counter" data-target="240">0</span><span class="font-tech text-3xl font-bold text-tech-blue">+</span>
-                            <span class="text-xs text-tech-steel uppercase block mt-1">Projects Completed</span>
-                        </div>
-                        <div class="border-l-4 border-tech-orange pl-4">
-                            <span class="font-tech text-3xl font-bold text-tech-blue block stat-counter" data-target="80">0</span><span class="font-tech text-3xl font-bold text-tech-blue">+</span>
-                            <span class="text-xs text-tech-steel uppercase block mt-1">Clients Served</span>
-                        </div>
-                        <div class="border-l-4 border-tech-blue pl-4">
-                            <span class="font-tech text-3xl font-bold text-tech-blue block stat-counter" data-target="100">0</span><span class="font-tech text-3xl font-bold text-tech-blue">%</span>
-                            <span class="text-xs text-tech-steel uppercase block mt-1">Safety Record</span>
-                        </div>
-                    </div>
-                </div>
-                <!-- Interactive visual spec list -->
-                <div class="bg-tech-gray rounded-2xl p-8 lg:p-12 border border-tech-border reveal">
-                    <h3 class="font-tech text-lg font-bold text-tech-blue mb-6 uppercase tracking-wider">Operational Criteria Checklist</h3>
-                    <ul class="space-y-4 text-sm text-tech-steel">
-                        <li class="flex items-start gap-3">
-                            <span class="w-5 h-5 rounded-full bg-tech-blue/10 flex items-center justify-center text-tech-blue font-bold text-xs mt-0.5">01</span>
-                            <span><strong>Risk Assessment Reports:</strong> We supply deep ground pressure analysis before bringing machinery on site.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="w-5 h-5 rounded-full bg-tech-blue/10 flex items-center justify-center text-tech-blue font-bold text-xs mt-0.5">02</span>
-                            <span><strong>Crane Operator Certification:</strong> Every pilot possesses active, certified heavy machinery equipment operator licenses.</span>
-                        </li>
-                        <li class="flex items-start gap-3">
-                            <span class="w-5 h-5 rounded-full bg-tech-blue/10 flex items-center justify-center text-tech-blue font-bold text-xs mt-0.5">03</span>
-                            <span><strong>Comprehensive Insurance:</strong> Fleet items are completely insured under comprehensive commercial indemnity policies.</span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section class="py-24 bg-white" id="services">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <span class="text-xs font-bold uppercase tracking-[0.2em] text-tech-orange mb-3 block font-tech">What We Do</span>
-                <h2 class="font-tech text-3xl sm:text-4xl font-bold tracking-tight text-tech-blue mb-4">Full-Spectrum Lifting Services</h2>
-                <p class="text-tech-steel text-sm sm:text-base">From single-day utility lifts to multi-week industrial installations, our services cover the full rigging lifecycle.</p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Card 1 -->
-                <div class="service-card bg-white border border-tech-border rounded-2xl p-8 reveal">
-                    <div class="icon-box w-14 h-14 rounded-xl bg-tech-blue/10 flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 stroke-tech-blue transition-colors" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 21h18M6 21V9l6-4 6 4v12M10 21v-6h4v6"/></svg>
-                    </div>
-                    <h3 class="font-tech text-lg font-bold text-tech-blue mb-3">Mobile Crane Rental</h3>
-                    <p class="text-tech-steel text-sm leading-relaxed">Telescopic and all-terrain cranes available for short or long-term lease, with certified operators included.</p>
-                </div>
-                <!-- Card 2 -->
-                <div class="service-card bg-white border border-tech-border rounded-2xl p-8 reveal">
-                    <div class="icon-box w-14 h-14 rounded-xl bg-tech-blue/10 flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 stroke-tech-blue transition-colors" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 2l2.4 6.9L21 12l-6.6 3.1L12 22l-2.4-6.9L3 12l6.6-3.1L12 2z"/></svg>
-                    </div>
-                    <h3 class="font-tech text-lg font-bold text-tech-blue mb-3">Heavy Rigging &amp; Erection</h3>
-                    <p class="text-tech-steel text-sm leading-relaxed">Structural steel erection, tandem lifts, and precision positioning for complex industrial builds.</p>
-                </div>
-                <!-- Card 3 -->
-                <div class="service-card bg-white border border-tech-border rounded-2xl p-8 reveal">
-                    <div class="icon-box w-14 h-14 rounded-xl bg-tech-blue/10 flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 stroke-tech-blue transition-colors" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M3 13h2l2-5h10l2 5h2M5 13v6h14v-6M9 19v2M15 19v2"/></svg>
-                    </div>
-                    <h3 class="font-tech text-lg font-bold text-tech-blue mb-3">Heavy Haulage &amp; Logistics</h3>
-                    <p class="text-tech-steel text-sm leading-relaxed">Route surveys, abnormal load transport, and nationwide mobilization for oversized machinery.</p>
-                </div>
-                <!-- Card 4 -->
-                <div class="service-card bg-white border border-tech-border rounded-2xl p-8 reveal">
-                    <div class="icon-box w-14 h-14 rounded-xl bg-tech-blue/10 flex items-center justify-center mb-6">
-                        <svg class="w-7 h-7 stroke-tech-blue transition-colors" fill="none" stroke-width="1.8" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5-2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
-                    </div>
-                    <h3 class="font-tech text-lg font-bold text-tech-blue mb-3">Site Safety &amp; Planning</h3>
-                    <p class="text-tech-steel text-sm leading-relaxed">Ground pressure analysis, lift plan documentation, and full compliance sign-off before mobilization.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Fleet Explorer (Interactive) -->
-    <section class="py-24 bg-tech-gray border-y border-tech-border" id="fleet">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <span class="text-xs font-bold uppercase tracking-[0.2em] text-tech-orange mb-3 block font-tech">Technical Specifications</span>
-                <h2 class="font-tech text-3xl sm:text-4xl font-bold tracking-tight text-tech-blue mb-4">Explore Our Advanced Fleet</h2>
-                <p class="text-tech-steel text-sm">Select a capacity class below to inspect technical limits, reach profiles, and optimal applications.</p>
-            </div>
-
-            <!-- Tab Headers -->
-            <div class="flex flex-wrap justify-center gap-4 mb-12 reveal">
-                <button class="px-6 py-3 bg-tech-blue text-white rounded font-tech text-xs tracking-wider uppercase font-bold transition-all duration-300 fleet-tab" data-fleet="light">
-                    Light (20T - 50T)
-                </button>
-                <button class="px-6 py-3 bg-white text-tech-blue border border-tech-border rounded font-tech text-xs tracking-wider uppercase font-bold hover:border-tech-orange transition-all duration-300 fleet-tab" data-fleet="medium">
-                    Medium (55T - 150T)
-                </button>
-                <button class="px-6 py-3 bg-white text-tech-blue border border-tech-border rounded font-tech text-xs tracking-wider uppercase font-bold hover:border-tech-orange transition-all duration-300 fleet-tab" data-fleet="heavy">
-                    Heavy-Duty (160T - 500T)
-                </button>
-            </div>
-
-            <!-- Fleet Content Box -->
-            <div class="bg-white border border-tech-border rounded-xl p-8 lg:p-12 shadow-sm max-w-5xl mx-auto reveal" id="fleetDisplayBox">
-                <div class="grid md:grid-cols-2 gap-12 items-center">
-                    <div>
-                        <span class="text-xs font-bold text-tech-orange uppercase font-tech block mb-2" id="fleetClass">Light-Duty Series</span>
-                        <h3 class="font-tech text-2xl sm:text-3xl font-bold text-tech-blue mb-6" id="fleetTitle">Mobile Telescopic Cranes</h3>
-                        <p class="text-tech-steel text-sm mb-6" id="fleetDesc">
-                            Ideal for residential trusses, light commercial HVAC setups, and quick-mobile utility maintenance tasks around Harare's metropolitan layout. Highly transportable and fast setup.
-                        </p>
-                        <div class="space-y-4 border-t border-tech-border pt-6 text-sm">
-                            <div class="flex justify-between">
-                                <span class="text-tech-steel">Payload Capacity Range</span>
-                                <span class="font-tech font-bold text-tech-blue" id="fleetPayload">20 to 50 Tons max</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-tech-steel">Maximum Hook Height</span>
-                                <span class="font-tech font-bold text-tech-blue" id="fleetHeight">40 Meters</span>
-                            </div>
-                            <div class="flex justify-between">
-                                <span class="text-tech-steel">Transport Footprint</span>
-                                <span class="font-tech font-bold text-tech-blue" id="fleetFootprint">Compact / Multi-Axle</span>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Wireframe SVG Graphics showing selected crane -->
-                    <div class="aspect-video bg-tech-gray rounded border border-tech-border flex items-center justify-center p-8 relative">
-                        <svg viewBox="0 0 100 100" class="w-2/3 h-2/3 text-tech-blue stroke-current stroke-1" fill="none" id="fleetVisual">
-                            <!-- Small Crane Diagram -->
-                            <line x1="10" y1="90" x2="90" y2="90" stroke="#3A4F66" />
-                            <rect x="25" y="70" width="30" height="20" rx="2" fill="#0A1D37" opacity="0.1" />
-                            <circle cx="30" cy="90" r="4" fill="#0A1D37" />
-                            <circle cx="40" cy="90" r="4" fill="#0A1D37" />
-                            <circle cx="50" cy="90" r="4" fill="#0A1D37" />
-                            <line x1="35" y1="70" x2="80" y2="35" stroke="#FF5E14" stroke-width="3" />
-                            <line x1="80" y1="35" x2="80" y2="65" stroke="#0A1D37" stroke-dasharray="2,2" />
-                        </svg>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- Interactive Lift Estimator / Dynamic Calculator Tool -->
-    <section class="py-24 bg-white" id="calculator">
-        <div class="max-w-5xl mx-auto px-6 lg:px-12">
-            <div class="text-center mb-16 reveal">
-                <span class="text-xs font-bold uppercase tracking-[0.2em] text-tech-orange mb-3 block font-tech">Technical Calculator</span>
-                <h2 class="font-tech text-3xl sm:text-4xl font-bold tracking-tight text-tech-blue mb-4">Instant Lift Estimator</h2>
-                <p class="text-tech-steel text-sm">Calculate project specifications to estimate your lifting requirements and recommended fleet range.</p>
-            </div>
-
-            <!-- Estimator UI Grid -->
-            <div class="border border-tech-border rounded-2xl p-8 lg:p-12 shadow-sm tech-grid relative">
-                <div class="grid md:grid-cols-2 gap-12">
-                    
-                    <!-- Left: Sliders & Inputs -->
-                    <div class="space-y-6">
-                        <div>
-                            <label for="loadWeight" class="block text-xs font-bold text-tech-steel uppercase font-tech tracking-wider mb-2">Estimated Load Weight (Tons)</label>
-                            <input type="range" id="loadWeight" min="5" max="450" value="45" class="w-full accent-tech-orange cursor-pointer">
-                            <div class="flex justify-between text-xs mt-2 font-tech font-bold text-tech-blue">
-                                <span>5T</span>
-                                <span class="text-tech-orange" id="weightDisplay">45 Tons</span>
-                                <span>450T</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="liftHeight" class="block text-xs font-bold text-tech-steel uppercase font-tech tracking-wider mb-2">Maximum Lift Height (Meters)</label>
-                            <input type="range" id="liftHeight" min="10" max="120" value="30" class="w-full accent-tech-orange cursor-pointer">
-                            <div class="flex justify-between text-xs mt-2 font-tech font-bold text-tech-blue">
-                                <span>10m</span>
-                                <span class="text-tech-orange" id="heightDisplay">30 Meters</span>
-                                <span>120m</span>
-                            </div>
-                        </div>
-
-                        <div>
-                            <label for="terrainType" class="block text-xs font-bold text-tech-steel uppercase font-tech tracking-wider mb-2">Ground Terrain Profile</label>
-                            <select id="terrainType" class="w-full bg-tech-gray border border-tech-border rounded p-3 text-sm text-tech-blue focus:outline-none focus:border-tech-orange">
-                                <option value="solid">Reinforced Concrete / Solid Grade</option>
-                                <option value="dirt">Compacted Dirt / Rough Ground</option>
-                                <option value="sand">Unstable Sand / Specialized Rigging Needed</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <!-- Right: Dynamic Results Card -->
-                    <div class="bg-tech-blue text-white rounded-xl p-8 flex flex-col justify-between">
-                        <div>
-                            <span class="text-xs uppercase tracking-wider text-tech-orange font-bold font-tech block mb-4">Calculated Lift Recommendation</span>
-                            <div class="mb-6">
-                                <span class="text-tech-gray text-xs block">Required Crane Class</span>
-                                <span class="font-tech text-2xl sm:text-3xl font-bold" id="calcClass">50T - Medium All-Terrain</span>
-                            </div>
-                            <div class="space-y-4 text-xs border-t border-white/10 pt-4">
-                                <div class="flex justify-between text-tech-gray">
-                                    <span>Crew Count Suggested:</span>
-                                    <span class="text-white font-bold" id="calcCrew">1 Lead Operator + 1 Rigger</span>
-                                </div>
-                                <div class="flex justify-between text-tech-gray">
-                                    <span>Engineering Blueprint Required:</span>
-                                    <span class="text-white font-bold" id="calcPlan">Standard Compliance Check</span>
-                                </div>
-                            </div>
-                        </div>
-                        <a href="#contact" class="mt-8 px-6 py-3.5 bg-tech-orange text-white font-tech text-xs tracking-wider uppercase font-bold rounded text-center hover:bg-white hover:text-tech-blue transition-all duration-300">
-                            Secure Crane Reservation
-                        </a>
-                    </div>
-
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Projects Gallery -->
-    <section class="py-24 bg-white" id="projects">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <span class="text-xs font-bold uppercase tracking-[0.2em] text-tech-orange mb-3 block font-tech">Field Operations</span>
-                <h2 class="font-tech text-3xl sm:text-4xl font-bold tracking-tight text-tech-blue mb-4">Recent Lifts &amp; Deployments</h2>
-                <p class="text-tech-steel text-sm sm:text-base">A look at recent rigging operations across construction, mining, and infrastructure sites. Click any image to view it in full.</p>
-            </div>
-
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6" id="galleryGrid">
-                <div class="gallery-item rounded-xl reveal" data-caption="All-terrain crane on a bridge steel-span installation">
-                    <img src="https://images.unsplash.com/photo-1541888946425-d81bb19240f5?auto=format&fit=crop&w=900&q=75" loading="lazy" alt="All-terrain crane lifting steel beam at a bridge construction site" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay absolute inset-0 flex items-end p-5">
-                        <span class="text-white font-tech text-sm font-bold">Bridge Span Steel Erection</span>
-                    </div>
-                </div>
-                <div class="gallery-item rounded-xl reveal" data-caption="Crawler crane positioning heavy precast concrete units">
-                    <img src="https://images.unsplash.com/photo-1590247813693-5541d1c609fd?auto=format&fit=crop&w=900&q=75" loading="lazy" alt="Crawler crane positioning heavy precast concrete units on site" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay absolute inset-0 flex items-end p-5">
-                        <span class="text-white font-tech text-sm font-bold">Precast Concrete Placement</span>
-                    </div>
-                </div>
-                <div class="gallery-item rounded-xl reveal" data-caption="Mobile telescopic crane on a commercial rooftop HVAC installation">
-                    <img src="https://images.unsplash.com/photo-1621905251189-08b45d6a269e?auto=format&fit=crop&w=900&q=75" loading="lazy" alt="Mobile telescopic crane lifting rooftop HVAC unit" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay absolute inset-0 flex items-end p-5">
-                        <span class="text-white font-tech text-sm font-bold">Rooftop HVAC Installation</span>
-                    </div>
-                </div>
-                <div class="gallery-item rounded-xl reveal" data-caption="Heavy lift crane operating at a mining shaft head frame">
-                    <img src="https://images.unsplash.com/photo-1504307651254-35680f356dfd?auto=format&fit=crop&w=900&q=75" loading="lazy" alt="Heavy lift crane operating at a mining shaft head frame" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay absolute inset-0 flex items-end p-5">
-                        <span class="text-white font-tech text-sm font-bold">Mining Shaft Head Frame</span>
-                    </div>
-                </div>
-                <div class="gallery-item rounded-xl reveal" data-caption="Tandem lift crew synchronizing two mobile cranes">
-                    <img src="https://images.unsplash.com/photo-1517070208541-6ddc4d3efbcb?auto=format&fit=crop&w=900&q=75" loading="lazy" alt="Tandem lift with two mobile cranes at an industrial site" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay absolute inset-0 flex items-end p-5">
-                        <span class="text-white font-tech text-sm font-bold">Tandem Crane Synchronization</span>
-                    </div>
-                </div>
-                <div class="gallery-item rounded-xl reveal" data-caption="Crane fleet staged at the Harare dispatch yard">
-                    <img src="https://images.unsplash.com/photo-1590496793929-36417d3117de?auto=format&fit=crop&w=900&q=75" loading="lazy" alt="Crane fleet staged at the Harare dispatch yard" class="w-full h-64 object-cover">
-                    <div class="gallery-overlay absolute inset-0 flex items-end p-5">
-                        <span class="text-white font-tech text-sm font-bold">Harare Dispatch Yard</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Lightbox -->
-    <div id="lightbox" class="fixed inset-0 bg-tech-darkest/95 backdrop-blur-sm z-[70] hidden items-center justify-center p-6" role="dialog" aria-modal="true" aria-label="Image viewer">
-        <button id="lightboxClose" class="absolute top-6 right-6 text-white/70 hover:text-white transition-colors" aria-label="Close image viewer">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-        <figure class="max-w-4xl w-full">
-            <img id="lightboxImg" src="" alt="" class="w-full max-h-[75vh] object-contain rounded-lg">
-            <figcaption id="lightboxCaption" class="text-white/70 text-sm text-center mt-4 font-tech"></figcaption>
-        </figure>
-    </div>
-
-    <!-- Map & Key Logistics Coverage Section -->
-    <section class="py-24 bg-tech-gray border-y border-tech-border" id="coverage">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="grid lg:grid-cols-2 gap-16 items-center">
-                
-                <div class="reveal">
-                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-tech-orange mb-3 block font-tech">Regional Distribution Hub</span>
-                    <h2 class="font-tech text-3xl sm:text-4xl font-bold tracking-tight text-tech-blue mb-6">
-                        Rapid Deployment Logistics Across Zimbabwe
-                    </h2>
-                    <p class="text-tech-steel text-sm sm:text-base leading-relaxed mb-6">
-                        Our main dispatch yard on <strong>200 Robert Mugabe Road in Harare</strong> connects directly to principal transit highways, allowing us to deploy machinery rapidly to mine expansions, bridge repairs, and skyscraper sites anywhere in Zimbabwe.
-                    </p>
-                    <div class="space-y-4">
-                        <div class="flex items-center gap-3 text-sm">
-                            <span class="w-2.5 h-2.5 rounded-full bg-tech-orange"></span>
-                            <span><strong>Harare Area:</strong> Under 3 hours mobilization for fast utility lifts.</span>
-                        </div>
-                        <div class="flex items-center gap-3 text-sm">
-                            <span class="w-2.5 h-2.5 rounded-full bg-tech-blue"></span>
-                            <span><strong>Nationwide:</strong> Coverage for mining, energy, and infrastructure projects.</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Abstract styled map grid representation -->
-                <div class="aspect-square bg-tech-blue rounded-3xl p-8 lg:p-12 relative flex flex-col justify-between overflow-hidden tech-grid-dark reveal">
-                    <div>
-                        <span class="text-xs text-tech-orange uppercase font-tech tracking-widest font-bold block mb-2">Coverage Coordinate Node</span>
-                        <h4 class="font-tech text-2xl font-bold text-white uppercase">Wise Jet Dispatch Area</h4>
-                    </div>
-                    <!-- Minimal styled graphic of Zimbabwe coordinate hubs -->
-                    <div class="relative w-full h-1/2 border border-white/10 rounded-lg p-6 bg-white/5 flex items-center justify-center">
-                        <div class="absolute w-4 h-4 bg-tech-orange rounded-full animate-ping"></div>
-                        <div class="absolute w-2.5 h-2.5 bg-tech-orange rounded-full"></div>
-                        <span class="absolute text-xs text-white/80 font-tech font-bold uppercase tracking-widest mt-8">Harare Main Yard</span>
-                    </div>
-                    <div class="text-xs text-white/50">
-                        Operational compliance managed with standard heavy freight licenses.
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- News & Articles Section -->
-    <section class="py-24 bg-white" id="news">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12">
-            <div class="text-center max-w-2xl mx-auto mb-16 reveal">
-                <span class="text-xs font-bold uppercase tracking-[0.2em] text-tech-orange mb-3 block font-tech">Insights</span>
-                <h2 class="font-tech text-3xl sm:text-4xl font-bold tracking-tight text-tech-blue mb-4">News &amp; Articles</h2>
-                <p class="text-tech-steel text-sm sm:text-base">Updates on fleet additions, safety standards, and lifting industry developments in Zimbabwe.</p>
-            </div>
-
-            <!-- Article Grid: id'd for easy programmatic addition of future cards -->
-            <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8" id="articleGrid">
-                <article class="article-card bg-white border border-tech-border rounded-2xl overflow-hidden reveal">
-                    <div class="overflow-hidden h-48">
-                        <img src="https://images.unsplash.com/photo-1541976590-713941681591?auto=format&fit=crop&w=800&q=75" loading="lazy" alt="New crawler crane delivered to the Wise Jet Cranes fleet" class="article-img w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-[11px] text-tech-steel uppercase font-tech tracking-wider">June 12, 2026</span>
-                        <h3 class="font-tech text-lg font-bold text-tech-blue mt-2 mb-3">Wise Jet Cranes Expands Fleet with New 220T Crawler Unit</h3>
-                        <p class="text-tech-steel text-sm leading-relaxed mb-5">Our latest heavy crawler crane addition boosts our capacity for large-scale infrastructure and mining shaft projects across the region.</p>
-                        <a href="#" class="inline-flex items-center gap-2 text-tech-orange font-tech text-xs font-bold uppercase tracking-wider hover:gap-3 transition-all">
-                            Read More
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <article class="article-card bg-white border border-tech-border rounded-2xl overflow-hidden reveal">
-                    <div class="overflow-hidden h-48">
-                        <img src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=800&q=75" loading="lazy" alt="Crane operator reviewing a safety checklist before lift" class="article-img w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-[11px] text-tech-steel uppercase font-tech tracking-wider">May 28, 2026</span>
-                        <h3 class="font-tech text-lg font-bold text-tech-blue mt-2 mb-3">Understanding Ground Pressure Analysis Before a Heavy Lift</h3>
-                        <p class="text-tech-steel text-sm leading-relaxed mb-5">Why pre-lift structural computations and ground compaction reviews are non-negotiable steps on every job site.</p>
-                        <a href="#" class="inline-flex items-center gap-2 text-tech-orange font-tech text-xs font-bold uppercase tracking-wider hover:gap-3 transition-all">
-                            Read More
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </a>
-                    </div>
-                </article>
-
-                <article class="article-card bg-white border border-tech-border rounded-2xl overflow-hidden reveal">
-                    <div class="overflow-hidden h-48">
-                        <img src="https://images.unsplash.com/photo-1531834685032-c34bf0d84c77?auto=format&fit=crop&w=800&q=75" loading="lazy" alt="Tandem crane lift at an industrial construction site" class="article-img w-full h-full object-cover">
-                    </div>
-                    <div class="p-6">
-                        <span class="text-[11px] text-tech-steel uppercase font-tech tracking-wider">May 9, 2026</span>
-                        <h3 class="font-tech text-lg font-bold text-tech-blue mt-2 mb-3">Case Study: Synchronized Tandem Lift on a Bridge Deck Project</h3>
-                        <p class="text-tech-steel text-sm leading-relaxed mb-5">How our rigging engineers coordinated two crane crews to place a 40-tonne bridge deck section with zero incident.</p>
-                        <a href="#" class="inline-flex items-center gap-2 text-tech-orange font-tech text-xs font-bold uppercase tracking-wider hover:gap-3 transition-all">
-                            Read More
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-                        </a>
-                    </div>
-                </article>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials -->
-    <section class="py-24 bg-tech-gray border-y border-tech-border" id="testimonials">
-        <div class="max-w-4xl mx-auto px-6 lg:px-12">
-            <div class="text-center mb-16 reveal">
-                <span class="text-xs font-bold uppercase tracking-[0.2em] text-tech-orange mb-3 block font-tech">Client Feedback</span>
-                <h2 class="font-tech text-3xl sm:text-4xl font-bold tracking-tight text-tech-blue mb-4">Trusted On-Site by Our Clients</h2>
-            </div>
-
-            <div class="bg-white border border-tech-border rounded-2xl p-10 lg:p-14 shadow-sm relative reveal" id="testimonialBox">
-                <svg class="w-10 h-10 text-tech-orange/20 mb-4" fill="currentColor" viewBox="0 0 32 32"><path d="M9.3 8.7C4.9 11.3 2 15.6 2 20.3c0 3.2 2.1 5.3 4.6 5.3 2.4 0 4.4-2 4.4-4.4 0-2.3-1.6-4.1-3.7-4.4.5-2.6 2.4-5 5.2-6.5L9.3 8.7zm14 0c-4.4 2.6-7.3 6.9-7.3 11.6 0 3.2 2.1 5.3 4.6 5.3 2.4 0 4.4-2 4.4-4.4 0-2.3-1.6-4.1-3.7-4.4.5-2.6 2.4-5 5.2-6.5l-3.2-1.6z"/></svg>
-
-                <div class="testimonial-slide active-slide" data-index="0">
-                    <p class="text-tech-blue text-lg sm:text-xl leading-relaxed mb-8 font-medium">"Wise Jet Cranes handled our factory roof steel installation without a single delay. Their pre-lift planning and on-site communication gave our whole team confidence."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-tech-blue text-white flex items-center justify-center font-tech font-bold">TM</div>
-                        <div>
-                            <span class="block font-tech font-bold text-tech-blue text-sm">Tendai Moyo</span>
-                            <span class="block text-tech-steel text-xs">Project Manager, Masimba Construction</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-slide" data-index="1">
-                    <p class="text-tech-blue text-lg sm:text-xl leading-relaxed mb-8 font-medium">"We needed a tandem lift for a bridge deck section under a tight deadline. The crew's synchronization was flawless and every safety box was checked."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-tech-blue text-white flex items-center justify-center font-tech font-bold">RC</div>
-                        <div>
-                            <span class="block font-tech font-bold text-tech-blue text-sm">Rutendo Chikafu</span>
-                            <span class="block text-tech-steel text-xs">Site Engineer, Zimplats Infrastructure</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-slide" data-index="2">
-                    <p class="text-tech-blue text-lg sm:text-xl leading-relaxed mb-8 font-medium">"Professional from the first call to the final sign-off. Their lift estimator tool even helped us budget the right crane class before they arrived on site."</p>
-                    <div class="flex items-center gap-4">
-                        <div class="w-12 h-12 rounded-full bg-tech-blue text-white flex items-center justify-center font-tech font-bold">FN</div>
-                        <div>
-                            <span class="block font-tech font-bold text-tech-blue text-sm">Farai Nyathi</span>
-                            <span class="block text-tech-steel text-xs">Operations Director, Sable Mining Group</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="flex items-center justify-between mt-6">
-                    <div class="flex items-center gap-2" id="testiDots">
-                        <span class="testi-dot active-dot" data-slide="0"></span>
-                        <span class="testi-dot" data-slide="1"></span>
-                        <span class="testi-dot" data-slide="2"></span>
-                    </div>
-                    <div class="flex items-center gap-3">
-                        <button id="testiPrev" class="w-10 h-10 rounded-full border border-tech-border flex items-center justify-center text-tech-blue hover:bg-tech-blue hover:text-white transition-all duration-300" aria-label="Previous testimonial">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
-                        </button>
-                        <button id="testiNext" class="w-10 h-10 rounded-full border border-tech-border flex items-center justify-center text-tech-blue hover:bg-tech-blue hover:text-white transition-all duration-300" aria-label="Next testimonial">
-                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Safety & Regulatory FAQ -->
-    <section class="py-24 bg-white" id="faq">
-        <div class="max-w-4xl mx-auto px-6 lg:px-12">
-            <div class="text-center mb-16 reveal">
-                <span class="text-xs font-bold uppercase tracking-[0.2em] text-tech-orange mb-3 block font-tech">Safety Compliance</span>
-                <h2 class="font-tech text-3xl sm:text-4xl font-bold tracking-tight text-tech-blue mb-4">Lifting Compliance Questions</h2>
-                <p class="text-tech-steel text-sm">Every heavy project is governed by strict safety regulations.</p>
-            </div>
-
-            <div class="space-y-4">
-                <!-- FAQ 1 -->
-                <div class="border border-tech-border rounded-lg overflow-hidden reveal">
-                    <button class="w-full px-6 py-5 flex justify-between items-center text-left font-tech font-bold text-tech-blue hover:text-tech-orange transition-colors focus:outline-none" aria-expanded="false">
-                        <span>What safety processes are run before the crane is dispatched?</span>
-                        <svg class="w-5 h-5 text-tech-orange transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="px-6 max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                        <p class="pb-5 text-sm text-tech-steel leading-relaxed">
-                            We execute pre-lift structural computations, ground compaction reviews, wind loading thresholds analysis, and full mechanical clearance verifications to guarantee secure execution.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- FAQ 2 -->
-                <div class="border border-tech-border rounded-lg overflow-hidden reveal">
-                    <button class="w-full px-6 py-5 flex justify-between items-center text-left font-tech font-bold text-tech-blue hover:text-tech-orange transition-colors focus:outline-none" aria-expanded="false">
-                        <span>Can you supply tandem lifts utilizing multiple cranes?</span>
-                        <svg class="w-5 h-5 text-tech-orange transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
-                    </button>
-                    <div class="px-6 max-h-0 overflow-hidden transition-all duration-300 ease-in-out">
-                        <p class="pb-5 text-sm text-tech-steel leading-relaxed">
-                            Yes. Our heavy-lift engineers specialize in tandem rigging layout plans. We use synchronized communication paths and load-monitoring diagnostics during synchronized crane shifts.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Technical Contact & Request Quote Section -->
-    <section class="py-24 bg-tech-blue text-white relative overflow-hidden" id="contact">
-        <!-- Technical architectural line overlays in background -->
-        <div class="absolute inset-0 opacity-10 pointer-events-none tech-grid-dark"></div>
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 relative z-10">
-            <div class="grid lg:grid-cols-12 gap-16 items-center">
-                
-                <div class="lg:col-span-5 reveal">
-                    <span class="text-xs font-bold uppercase tracking-[0.2em] text-tech-orange mb-3 block font-tech">Secure Operations</span>
-                    <h2 class="font-tech text-3xl sm:text-5xl font-bold tracking-tight mb-6">Start Your Lift Assessment</h2>
-                    <p class="text-tech-gray text-sm leading-relaxed mb-8">
-                        Connect directly with our engineering desk for custom crane configurations, route planning, and project quotes.
-                    </p>
-                    <div class="space-y-6 text-sm text-tech-gray mb-10">
-                        <div class="flex items-center gap-4">
-                            <span class="text-tech-orange font-bold font-tech uppercase tracking-wider">HARARE YARD:</span>
-                            <span>200 Robert Mugabe Road, Harare, Zimbabwe</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="text-tech-orange font-bold font-tech uppercase tracking-wider">OFFICE:</span>
-                            <span>+263 71 832 3920</span>
-                        </div>
-                        <div class="flex items-center gap-4">
-                            <span class="text-tech-orange font-bold font-tech uppercase tracking-wider">EMAIL:</span>
-                            <span>info@wisejetcranes.co.zw</span>
-                        </div>
-                    </div>
-
-                    <!-- Embedded Map -->
-                    <div class="rounded-xl overflow-hidden border border-white/10 mb-8 aspect-video">
-                        <iframe
-                            title="Wise Jet Cranes Harare Yard Map"
-                            src="https://www.google.com/maps?q=Harare,Zimbabwe&output=embed"
-                            class="w-full h-full grayscale-[20%] contrast-125"
-                            style="border:0;"
-                            loading="lazy"
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
-                    </div>
-
-                    <!-- Social Links -->
-                    <div class="flex items-center gap-3">
-                        <a href="#" aria-label="Facebook" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-tech-orange hover:border-tech-orange transition-all duration-300">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg>
-                        </a>
-                        <a href="#" aria-label="LinkedIn" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-tech-orange hover:border-tech-orange transition-all duration-300">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 11-4 0 2 2 0 014 0zM3.5 8.75h3.9V21H3.5V8.75zm6.7 0h3.75v1.68h.05c.52-.98 1.8-2.02 3.7-2.02 3.95 0 4.68 2.6 4.68 5.98V21h-3.9v-5.87c0-1.4 0-3.2-1.95-3.2-1.96 0-2.26 1.53-2.26 3.1V21h-3.9V8.75z"/></svg>
-                        </a>
-                        <a href="#" aria-label="Instagram" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-tech-orange hover:border-tech-orange transition-all duration-300">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.2c3.2 0 3.6 0 4.9.07 3.3.15 4.7 1.6 4.9 4.9.06 1.3.07 1.6.07 4.83s0 3.5-.07 4.83c-.15 3.3-1.6 4.7-4.9 4.9-1.3.06-1.6.07-4.9.07s-3.6 0-4.9-.07c-3.3-.15-4.7-1.6-4.9-4.9C2.13 15.5 2.12 15.2 2.12 12s0-3.5.07-4.83c.15-3.3 1.6-4.75 4.9-4.9C8.4 2.2 8.7 2.2 12 2.2zm0 3.15a6.65 6.65 0 100 13.3 6.65 6.65 0 000-13.3zm0 11a4.35 4.35 0 110-8.7 4.35 4.35 0 010 8.7zm6.9-11.25a1.56 1.56 0 11-3.12 0 1.56 1.56 0 013.12 0z"/></svg>
-                        </a>
-                        <a href="https://wa.me/263718323920" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-tech-orange hover:border-tech-orange transition-all duration-300">
-                            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.85.5 3.58 1.36 5.06L2 22l5.19-1.44a9.9 9.9 0 004.85 1.24h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.9-1.26-4.8-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.28.58-.36.78-.36l.56.01c.18.01.42-.07.66.5.24.58.83 2 .9 2.15.07.15.12.32.02.51-.1.2-.15.32-.3.5-.14.17-.31.38-.44.51-.15.15-.3.3-.13.6.17.28.75 1.24 1.6 2 1.1 1 2.03 1.3 2.32 1.45.29.14.46.12.63-.07.17-.2.71-.83.9-1.12.19-.28.38-.23.63-.14.26.1 1.66.79 1.94.93.28.14.47.21.53.33.07.13.07.71-.17 1.39z"/></svg>
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Structural Contact Form -->
-                <div class="lg:col-span-7 reveal">
-                    <div class="bg-white text-tech-blue rounded-xl p-8 lg:p-12 shadow-2xl relative">
-                        <form id="contactForm" class="space-y-6">
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div class="flex flex-col">
-                                    <label for="cName" class="text-xs font-bold text-tech-steel uppercase font-tech mb-2">Company / Contact Name</label>
-                                    <input type="text" id="cName" required class="bg-tech-gray border border-tech-border rounded p-4 text-sm text-tech-blue focus:outline-none focus:border-tech-orange">
-                                </div>
-                                <div class="flex flex-col">
-                                    <label for="cPhone" class="text-xs font-bold text-tech-steel uppercase font-tech mb-2">Phone Coordinate</label>
-                                    <input type="tel" id="cPhone" required class="bg-tech-gray border border-tech-border rounded p-4 text-sm text-tech-blue focus:outline-none focus:border-tech-orange">
-                                </div>
-                            </div>
-                            <div class="flex flex-col">
-                                <label for="cLoc" class="text-xs font-bold text-tech-steel uppercase font-tech mb-2">Deployment Location (City/Site Name)</label>
-                                <input type="text" id="cLoc" required placeholder="Harare, Bulawayo, Mutare..." class="bg-tech-gray border border-tech-border rounded p-4 text-sm text-tech-blue focus:outline-none focus:border-tech-orange">
-                            </div>
-                            <div class="flex flex-col">
-                                <label for="cMessage" class="text-xs font-bold text-tech-steel uppercase font-tech mb-2">Project Scope & Load Details</label>
-                                <textarea id="cMessage" rows="4" required placeholder="Specify estimated payload weight, structural reach, and terrain type..." class="bg-tech-gray border border-tech-border rounded p-4 text-sm text-tech-blue focus:outline-none focus:border-tech-orange resize-none"></textarea>
-                            </div>
-                            <button type="submit" class="w-full py-4 bg-tech-orange text-white font-tech text-xs tracking-widest uppercase font-bold rounded hover:bg-tech-blue transition-all duration-300">
-                                Send Specifications to Dispatch
-                            </button>
-                        </form>
-                        
-                        <!-- Confirmation Screen Overlay -->
-                        <div id="formSuccess" class="absolute inset-0 bg-white rounded-xl flex-col items-center justify-center p-12 text-center hidden">
-                            <div class="w-16 h-16 bg-tech-orange/10 border border-tech-orange rounded-full flex items-center justify-center text-tech-orange mb-6">
-                                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"/></svg>
-                            </div>
-                            <h3 class="font-tech text-2xl font-bold text-tech-blue mb-2">Transmission Confirmed</h3>
-                            <p class="text-sm text-tech-steel max-w-sm mb-6">Our structural lift engineers are evaluating your load parameters and coordinates.</p>
-                            <button onclick="resetContactForm()" class="px-6 py-2 border border-tech-border text-tech-blue rounded text-xs font-bold uppercase font-tech hover:bg-tech-gray transition-colors">Submit Another Parameter</button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Blueprint Technical Footer -->
-    <footer class="bg-tech-darkest text-white border-t border-white/10 pt-20 pb-10">
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
-
-            <div class="lg:col-span-2">
-                <a href="#" class="flex items-center gap-3 mb-6 select-none" aria-label="Wise Jet Cranes Home">
-                    <div class="w-10 h-10 bg-white flex items-center justify-center rounded border border-white/10">
-                        <svg viewBox="0 0 200 200" class="w-8 h-8" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M40 50 L90 30 L90 150 L40 120 Z" fill="#0A1D37" />
-                            <path d="M160 50 L110 30 L110 150 L160 120 Z" fill="#0A1D37" />
-                            <path d="M75 160 L125 160 L100 105 Z" fill="#FF5E14" />
-                            <circle cx="85" cy="45" r="5" fill="#FF5E14" />
-                            <circle cx="115" cy="45" r="5" fill="#FF5E14" />
-                            <path d="M100 45 L100 90 C100 105 80 105 80 90 C80 82 88 82 88 90 C88 95 94 95 94 90" stroke="#FFFFFF" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" />
-                        </svg>
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="font-tech text-lg font-bold tracking-tight text-white uppercase leading-none">Wise Jet</span>
-                        <span class="text-[10px] tracking-[0.3em] uppercase text-tech-orange font-bold leading-none mt-1">Cranes</span>
-                    </div>
-                </a>
-                <p class="text-sm text-tech-gray leading-relaxed mb-6 max-w-xs">
-                    Heavy crane leasing and complex project rigging operations based out of Harare, Zimbabwe, engineered to international safety standards.
-                </p>
-                <div class="flex items-center gap-3">
-                    <a href="#" aria-label="Facebook" class="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center hover:bg-tech-orange hover:border-tech-orange transition-all duration-300">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M22 12a10 10 0 10-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.2c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0022 12z"/></svg>
-                    </a>
-                    <a href="#" aria-label="LinkedIn" class="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center hover:bg-tech-orange hover:border-tech-orange transition-all duration-300">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M6.94 5a2 2 0 11-4 0 2 2 0 014 0zM3.5 8.75h3.9V21H3.5V8.75zm6.7 0h3.75v1.68h.05c.52-.98 1.8-2.02 3.7-2.02 3.95 0 4.68 2.6 4.68 5.98V21h-3.9v-5.87c0-1.4 0-3.2-1.95-3.2-1.96 0-2.26 1.53-2.26 3.1V21h-3.9V8.75z"/></svg>
-                    </a>
-                    <a href="https://wa.me/263718323920" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" class="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center hover:bg-tech-orange hover:border-tech-orange transition-all duration-300">
-                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.85.5 3.58 1.36 5.06L2 22l5.19-1.44a9.9 9.9 0 004.85 1.24h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.9-1.26-4.8-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.28.58-.36.78-.36l.56.01c.18.01.42-.07.66.5.24.58.83 2 .9 2.15.07.15.12.32.02.51-.1.2-.15.32-.3.5-.14.17-.31.38-.44.51-.15.15-.3.3-.13.6.17.28.75 1.24 1.6 2 1.1 1 2.03 1.3 2.32 1.45.29.14.46.12.63-.07.17-.2.71-.83.9-1.12.19-.28.38-.23.63-.14.26.1 1.66.79 1.94.93.28.14.47.21.53.33.07.13.07.71-.17 1.39z"/></svg>
-                    </a>
-                </div>
-            </div>
-
-            <div>
-                <h4 class="font-tech text-xs tracking-wider uppercase font-bold text-tech-orange mb-6">Quick Links</h4>
-                <ul class="space-y-3 text-sm text-tech-gray">
-                    <li><a href="#about" class="hover:text-white transition-colors">Philosophy</a></li>
-                    <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
-                    <li><a href="#projects" class="hover:text-white transition-colors">Projects</a></li>
-                    <li><a href="#news" class="hover:text-white transition-colors">News</a></li>
-                    <li><a href="#faq" class="hover:text-white transition-colors">Safety FAQ</a></li>
-                    <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-tech text-xs tracking-wider uppercase font-bold text-tech-orange mb-6">Services</h4>
-                <ul class="space-y-3 text-sm text-tech-gray">
-                    <li><a href="#fleet" class="hover:text-white transition-colors">Mobile Crane Rental</a></li>
-                    <li><a href="#services" class="hover:text-white transition-colors">Heavy Rigging &amp; Erection</a></li>
-                    <li><a href="#services" class="hover:text-white transition-colors">Heavy Haulage &amp; Logistics</a></li>
-                    <li><a href="#services" class="hover:text-white transition-colors">Site Safety &amp; Planning</a></li>
-                </ul>
-            </div>
-
-            <div>
-                <h4 class="font-tech text-xs tracking-wider uppercase font-bold text-tech-orange mb-6">Contact Info</h4>
-                <ul class="space-y-3 text-sm text-tech-gray">
-                    <li>200 Robert Mugabe Road</li>
-                    <li>Harare, Zimbabwe</li>
-                    <li><a href="tel:+263718323920" class="hover:text-white transition-colors">+263 71 832 3920</a></li>
-                    <li><a href="mailto:info@wisejetcranes.co.zw" class="hover:text-white transition-colors">info@wisejetcranes.co.zw</a></li>
-                </ul>
-            </div>
-
-        </div>
-
-        <div class="max-w-7xl mx-auto px-6 lg:px-12 border-t border-white/10 pt-10 flex flex-col md:flex-row justify-between items-center gap-6">
-            <span class="text-xs text-tech-gray">© 2026 Wise Jet Cranes. All Rights Reserved. Engineered to international standards.</span>
-            <div class="flex items-center gap-6 text-xs text-tech-gray">
-                <a href="#" class="hover:text-white">Terms of Lease</a>
-                <a href="#" class="hover:text-white">Safety Policy</a>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating WhatsApp Button -->
-    <a href="https://wa.me/263718323920" target="_blank" rel="noopener noreferrer" id="whatsappBtn" aria-label="Chat on WhatsApp" class="w-14 h-14 rounded-full bg-[#25D366] flex items-center justify-center text-white">
-        <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.85.5 3.58 1.36 5.06L2 22l5.19-1.44a9.9 9.9 0 004.85 1.24h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.9-1.26-4.8-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.28.58-.36.78-.36l.56.01c.18.01.42-.07.66.5.24.58.83 2 .9 2.15.07.15.12.32.02.51-.1.2-.15.32-.3.5-.14.17-.31.38-.44.51-.15.15-.3.3-.13.6.17.28.75 1.24 1.6 2 1.1 1 2.03 1.3 2.32 1.45.29.14.46.12.63-.07.17-.2.71-.83.9-1.12.19-.28.38-.23.63-.14.26.1 1.66.79 1.94.93.28.14.47.21.53.33.07.13.07.71-.17 1.39z"/></svg>
-    </a>
-
-    <!-- Back to Top Button -->
-    <button id="backToTop" aria-label="Back to top" class="w-11 h-11 rounded-full bg-tech-blue hover:bg-tech-orange text-white flex items-center justify-center transition-all duration-300">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 15l7-7 7 7"/></svg>
-    </button>
-
-    <!-- Interactive Scripts -->
-    <script>
-        // Track Scroll for Progress Bar
-        const scrollBar = document.getElementById('scrollProgress');
-        window.addEventListener('scroll', () => {
-            const windowHeight = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-            const scrolled = (window.scrollY / windowHeight) * 100;
-            if (scrollBar) {
-                scrollBar.style.width = scrolled + '%';
-            }
-        });
-
-        // Sticky Navbar: transparent-over-hero -> solid-on-scroll
-        const navbar = document.getElementById('navbar');
-        const backToTop = document.getElementById('backToTop');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 40) {
-                navbar?.classList.add('scrolled');
-            } else {
-                navbar?.classList.remove('scrolled');
-            }
-            if (window.scrollY > 500) {
-                backToTop?.classList.add('show');
-            } else {
-                backToTop?.classList.remove('show');
-            }
-        });
-        backToTop?.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-        // Active nav link indicator based on scroll position
-        const navLinks = document.querySelectorAll('[data-nav]');
-        const navSections = Array.from(navLinks).map(link => document.querySelector(link.getAttribute('href')));
-        const setActiveLink = () => {
-            let currentIndex = 0;
-            navSections.forEach((section, i) => {
-                if (section && window.scrollY >= section.offsetTop - 140) currentIndex = i;
-            });
-            navLinks.forEach((link, i) => link.classList.toggle('active', i === currentIndex));
-        };
-        window.addEventListener('scroll', setActiveLink);
-        setActiveLink();
-
-        // Mobile Drawer Toggle
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileDrawer = document.getElementById('mobileDrawer');
-        const closeDrawer = document.getElementById('closeDrawer');
-
-        menuToggle?.addEventListener('click', () => {
-            mobileDrawer?.classList.remove('hidden');
-            mobileDrawer?.classList.add('flex');
-        });
-
-        const hideDrawer = () => {
-            mobileDrawer?.classList.add('hidden');
-            mobileDrawer?.classList.remove('flex');
-        };
-
-        closeDrawer?.addEventListener('click', hideDrawer);
-        document.querySelectorAll('.mobile-item').forEach(item => {
-            item.addEventListener('click', hideDrawer);
-        });
-
-        // Intercept Scrolling View Reveals
-        const reveals = document.querySelectorAll('.reveal');
-        const revealObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('active');
-                    revealObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.1 });
-
-        reveals.forEach(reveal => {
-            revealObserver.observe(reveal);
-        });
-
-        // Fleet Specifications Data & Interactions
-        const fleetTabs = document.querySelectorAll('.fleet-tab');
-        const fleetClass = document.getElementById('fleetClass');
-        const fleetTitle = document.getElementById('fleetTitle');
-        const fleetDesc = document.getElementById('fleetDesc');
-        const fleetPayload = document.getElementById('fleetPayload');
-        const fleetHeight = document.getElementById('fleetHeight');
-        const fleetFootprint = document.getElementById('fleetFootprint');
-        const fleetVisual = document.getElementById('fleetVisual');
-
-        const fleetData = {
-            light: {
-                class: "Light-Duty Series",
-                title: "Mobile Telescopic Cranes",
-                desc: "Ideal for residential trusses, light commercial HVAC setups, and quick-mobile utility maintenance tasks around Harare's metropolitan layout. Highly transportable and fast setup.",
-                payload: "20 to 50 Tons max",
-                height: "40 Meters",
-                footprint: "Compact / Multi-Axle",
-                visual: `
-                    <line x1="10" y1="90" x2="90" y2="90" stroke="#3A4F66" />
-                    <rect x="25" y="70" width="30" height="20" rx="2" fill="#0A1D37" opacity="0.1" />
-                    <circle cx="30" cy="90" r="4" fill="#0A1D37" />
-                    <circle cx="40" cy="90" r="4" fill="#0A1D37" />
-                    <circle cx="50" cy="90" r="4" fill="#0A1D37" />
-                    <line x1="35" y1="70" x2="80" y2="35" stroke="#FF5E14" stroke-width="3" />
-                    <line x1="80" y1="35" x2="80" y2="65" stroke="#0A1D37" stroke-dasharray="2,2" />
-                `
-            },
-            medium: {
-                class: "Medium Industrial Series",
-                title: "All-Terrain Mobile Units",
-                desc: "Equipped for structural steel assemblies, commercial structural framing, and moving moderately heavy factory hardware. Highly versatile multi-axle steering profiles.",
-                payload: "55 to 150 Tons max",
-                height: "75 Meters",
-                footprint: "Hydraulic Outrigger Base",
-                visual: `
-                    <line x1="10" y1="90" x2="90" y2="90" stroke="#3A4F66" />
-                    <rect x="20" y="65" width="45" height="25" rx="3" fill="#0A1D37" opacity="0.1" />
-                    <circle cx="25" cy="90" r="4" fill="#0A1D37" />
-                    <circle cx="33" cy="90" r="4" fill="#0A1D37" />
-                    <circle cx="41" cy="90" r="4" fill="#0A1D37" />
-                    <circle cx="49" cy="90" r="4" fill="#0A1D37" />
-                    <circle cx="57" cy="90" r="4" fill="#0A1D37" />
-                    <line x1="40" y1="65" x2="85" y2="15" stroke="#FF5E14" stroke-width="4" />
-                    <line x1="85" y1="15" x2="85" y2="55" stroke="#0A1D37" stroke-dasharray="2,2" />
-                `
-            },
-            heavy: {
-                class: "Heavy Industrial Class",
-                title: "Heavy Crawlers & Lattice Jibs",
-                desc: "Engineered for high-scale bridge spans, heavy concrete column installations, mining shaft setups, and heavy infrastructure developments across SADC corridors.",
-                payload: "160 to 500 Tons max",
-                height: "120 Meters",
-                footprint: "Reinforced Crawler Tracks",
-                visual: `
-                    <line x1="10" y1="90" x2="90" y2="90" stroke="#3A4F66" />
-                    <rect x="15" y="60" width="55" height="30" rx="4" fill="#0A1D37" opacity="0.1" />
-                    <rect x="10" y="85" width="65" height="8" rx="2" fill="#0A1D37" />
-                    <line x1="30" y1="60" x2="90" y2="10" stroke="#FF5E14" stroke-width="5" />
-                    <line x1="90" y1="10" x2="90" y2="40" stroke="#0A1D37" stroke-width="2" />
-                `
-            }
-        };
-
-        fleetTabs.forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove selected styling
-                fleetTabs.forEach(t => {
-                    t.classList.remove('bg-tech-blue', 'text-white');
-                    t.classList.add('bg-white', 'text-tech-blue', 'border-tech-border');
-                });
-
-                // Apply active styling
-                tab.classList.add('bg-tech-blue', 'text-white');
-                tab.classList.remove('bg-white', 'text-tech-blue', 'border-tech-border');
-
-                // Update text content with standard animation transitions
-                const dataKey = tab.getAttribute('data-fleet');
-                if (dataKey && fleetData[dataKey]) {
-                    const info = fleetData[dataKey];
-                    if (fleetClass) fleetClass.innerText = info.class;
-                    if (fleetTitle) fleetTitle.innerText = info.title;
-                    if (fleetDesc) fleetDesc.innerText = info.desc;
-                    if (fleetPayload) fleetPayload.innerText = info.payload;
-                    if (fleetHeight) fleetHeight.innerText = info.height;
-                    if (fleetFootprint) fleetFootprint.innerText = info.footprint;
-                    if (fleetVisual) fleetVisual.innerHTML = info.visual;
-                }
-            });
-        });
-
-        // Dynamic Estimator Calculation logic
-        const weightSlider = document.getElementById('loadWeight');
-        const heightSlider = document.getElementById('liftHeight');
-        const terrainSelect = document.getElementById('terrainType');
-
-        const weightDisplay = document.getElementById('weightDisplay');
-        const heightDisplay = document.getElementById('heightDisplay');
-
-        const calcClass = document.getElementById('calcClass');
-        const calcCrew = document.getElementById('calcCrew');
-        const calcPlan = document.getElementById('calcPlan');
-
-        const updateEstimator = () => {
-            const weightVal = parseInt(weightSlider?.value || "0");
-            const heightVal = parseInt(heightSlider?.value || "0");
-            const terrainVal = terrainSelect?.value || "solid";
-
-            if (weightDisplay) weightDisplay.innerText = weightVal + " Tons";
-            if (heightDisplay) heightDisplay.innerText = heightVal + " Meters";
-
-            let recommendedClass = "";
-            let recommendedCrew = "";
-            let recommendedPlan = "";
-
-            if (weightVal <= 50 && heightVal <= 40) {
-                recommendedClass = "20T - 50T Light Duty Mobile";
-                recommendedCrew = "1 Lead Operator + 1 Mechanical Rigger";
-                recommendedPlan = "Standard Operations Permit Checklist";
-            } else if (weightVal <= 150 && heightVal <= 75) {
-                recommendedClass = "55T - 150T All-Terrain Hydraulic";
-                recommendedCrew = "1 Senior Pilot + 2 Technical Riggers";
-                recommendedPlan = "CAD Rigging Alignment Document Required";
-            } else {
-                recommendedClass = "160T - 500T Lattice Crawler Class";
-                recommendedCrew = "1 Master Engineer + 3 Riggers + Site Marshall";
-                recommendedPlan = "Critical Site Safety Structural Blueprint Report";
-            }
-
-            if (terrainVal === "sand") {
-                recommendedPlan += " + Specialized Outrigger Pad Compaction Plan";
-            }
-
-            if (calcClass) calcClass.innerText = recommendedClass;
-            if (calcCrew) calcCrew.innerText = recommendedCrew;
-            if (calcPlan) calcPlan.innerText = recommendedPlan;
-        };
-
-        weightSlider?.addEventListener('input', updateEstimator);
-        heightSlider?.addEventListener('input', updateEstimator);
-        terrainSelect?.addEventListener('change', updateEstimator);
-
-        // Run on load
-        updateEstimator();
-
-        // FAQ accordion transitions
-        const accordionBtns = document.querySelectorAll('#faq button');
-        accordionBtns.forEach(btn => {
-            btn.addEventListener('click', () => {
-                const content = btn.nextElementSibling;
-                const icon = btn.querySelector('svg');
-                const isExpanded = btn.getAttribute('aria-expanded') === 'true';
-
-                accordionBtns.forEach(otherBtn => {
-                    if (otherBtn !== btn) {
-                        otherBtn.setAttribute('aria-expanded', 'false');
-                        otherBtn.nextElementSibling.style.maxHeight = '0';
-                        otherBtn.querySelector('svg').classList.remove('rotate-180');
-                    }
-                });
-
-                if (isExpanded) {
-                    btn.setAttribute('aria-expanded', 'false');
-                    content.style.maxHeight = '0';
-                    icon.classList.remove('rotate-180');
-                } else {
-                    btn.setAttribute('aria-expanded', 'true');
-                    content.style.maxHeight = content.scrollHeight + 'px';
-                    icon.classList.add('rotate-180');
-                }
-            });
-        });
-
-        // Contact Form processing simulation
-        const contactForm = document.getElementById('contactForm');
-        const formSuccess = document.getElementById('formSuccess');
-
-        contactForm?.addEventListener('submit', (e) => {
-            e.preventDefault();
-            if (contactForm.checkValidity()) {
-                formSuccess?.classList.remove('hidden');
-                formSuccess?.classList.add('flex');
-            }
-        });
-
-        window.resetContactForm = () => {
-            contactForm?.reset();
-            formSuccess?.classList.remove('flex');
-            formSuccess?.classList.add('hidden');
-        };
-
-        // Animated Stat Counters (About section)
-        const statEls = document.querySelectorAll('.stat-counter');
-        const animateCount = (el) => {
-            const target = parseInt(el.getAttribute('data-target'), 10) || 0;
-            const duration = 1400;
-            const start = performance.now();
-            const step = (now) => {
-                const progress = Math.min((now - start) / duration, 1);
-                const eased = 1 - Math.pow(1 - progress, 3);
-                el.textContent = Math.round(eased * target);
-                if (progress < 1) requestAnimationFrame(step);
-            };
-            requestAnimationFrame(step);
-        };
-        const statObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    animateCount(entry.target);
-                    statObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.4 });
-        statEls.forEach(el => statObserver.observe(el));
-
-        // Projects Gallery Lightbox
-        const galleryItems = document.querySelectorAll('.gallery-item');
-        const lightbox = document.getElementById('lightbox');
-        const lightboxImg = document.getElementById('lightboxImg');
-        const lightboxCaption = document.getElementById('lightboxCaption');
-        const lightboxClose = document.getElementById('lightboxClose');
-
-        const openLightbox = (item) => {
-            const img = item.querySelector('img');
-            if (!img || !lightbox || !lightboxImg) return;
-            lightboxImg.src = img.src;
-            lightboxImg.alt = img.alt;
-            if (lightboxCaption) lightboxCaption.textContent = item.getAttribute('data-caption') || '';
-            lightbox.classList.remove('hidden');
-            lightbox.classList.add('flex');
-            document.body.style.overflow = 'hidden';
-        };
-        const closeLightbox = () => {
-            lightbox?.classList.add('hidden');
-            lightbox?.classList.remove('flex');
-            document.body.style.overflow = '';
-        };
-
-        galleryItems.forEach(item => {
-            item.addEventListener('click', () => openLightbox(item));
-        });
-        lightboxClose?.addEventListener('click', closeLightbox);
-        lightbox?.addEventListener('click', (e) => {
-            if (e.target === lightbox) closeLightbox();
-        });
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closeLightbox();
-        });
-
-        // Testimonial Slider
-        const slides = document.querySelectorAll('.testimonial-slide');
-        const dots = document.querySelectorAll('.testi-dot');
-        const testiPrev = document.getElementById('testiPrev');
-        const testiNext = document.getElementById('testiNext');
-        let currentSlide = 0;
-        let testiTimer;
-
-        const showSlide = (index) => {
-            currentSlide = (index + slides.length) % slides.length;
-            slides.forEach((slide, i) => slide.classList.toggle('active-slide', i === currentSlide));
-            dots.forEach((dot, i) => dot.classList.toggle('active-dot', i === currentSlide));
-        };
-        const startAutoplay = () => {
-            clearInterval(testiTimer);
-            testiTimer = setInterval(() => showSlide(currentSlide + 1), 6000);
-        };
-
-        testiNext?.addEventListener('click', () => { showSlide(currentSlide + 1); startAutoplay(); });
-        testiPrev?.addEventListener('click', () => { showSlide(currentSlide - 1); startAutoplay(); });
-        dots.forEach((dot, i) => dot.addEventListener('click', () => { showSlide(i); startAutoplay(); }));
-
-        if (slides.length) {
-            showSlide(0);
-            startAutoplay();
-        }
-    </script>
+    <label for="s">Service needed</label>
+    <select id="s"><option>Crane Hire</option><option>Heavy Lifting</option><option>Rigging</option><option>Specialised Transport</option><option>Access Platforms</option><option>Project Management</option></select>
+    <label for="l">Site location</label>
+    <input id="l" placeholder="e.g. Harare, Bulawayo, Mutare" required>
+    <label for="m">Load weight, height &amp; details</label>
+    <textarea id="m" rows="4" placeholder="What needs lifting, approximate weight, dates…"></textarea>
+    <button class="btn btn-primary" type="submit">Send via WhatsApp →</button>
+    <p class="note">Opens WhatsApp with your details ready to send. Prefer email? <a href="mailto:sales@wisejetcranes.co.zw" style="text-decoration:underline">sales@wisejetcranes.co.zw</a></p>
+   </form>
+  </div>
+  <div class="map rv"><iframe title="Wisejet Cranes location in Harare" loading="lazy" src="https://www.google.com/maps?q=200+Robert+Mugabe+Road,+Harare,+Zimbabwe&output=embed"></iframe></div>
+ </div>
+</section>
+</main>
+
+<footer>
+ <div class="wrap">
+  <div class="fgrid">
+   <div><img src="https://wisejetcranes.co.zw/wp-content/uploads/2020/04/logo.jpeg" alt="Wisejet Cranes" style="height:48px;background:#fff;border-radius:8px;padding:3px 8px;margin-bottom:18px" loading="lazy"><p>The premier crane hire company between the Zambezi and Limpopo rivers. Comprehensive, robust solutions for all your heavy lifting needs.</p></div>
+   <div><h4>Services</h4><ul><li><a href="#services">Crane Hire</a></li><li><a href="#services">Heavy Lifting</a></li><li><a href="#services">Rigging</a></li><li><a href="#services">Transport</a></li></ul></div>
+   <div><h4>Company</h4><ul><li><a href="#about">About</a></li><li><a href="#work">Projects</a></li><li><a href="blog.html">Insights</a></li><li><a href="#process">How it works</a></li><li><a href="#contact">Contact</a></li></ul></div>
+   <div><h4>Connect</h4><ul><li><a href="https://www.facebook.com/hirecranes/" target="_blank" rel="noopener">Facebook</a></li><li><a href="https://www.linkedin.com/in/wise-jet-cranes-02b6a3133/" target="_blank" rel="noopener">LinkedIn</a></li><li><a href="https://x.com/wisejetcranes" target="_blank" rel="noopener">X / Twitter</a></li></ul></div>
+  </div>
+  <div class="copy"><span>© <span id="yr">2026</span> Wisejet Cranes. All rights reserved.</span><span>Harare, Zimbabwe</span></div>
+ </div>
+</footer>
+
+<div class="mcall"><a class="btn btn-primary" href="tel:+263718323920">Call for a Quote</a></div>
+<a class="wa" href="https://wa.me/263718323920" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.85.5 3.58 1.36 5.06L2 22l5.19-1.44a9.9 9.9 0 004.85 1.24c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.02c-.24.68-1.4 1.3-1.94 1.38-.5.08-1.13.11-1.83-.12-.42-.13-.96-.31-1.65-.6-2.9-1.26-4.8-4.17-4.94-4.36-.14-.2-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.27-.28.58-.36.78-.36l.56.01c.18.01.42-.07.66.5.24.58.83 2 .9 2.15.07.15.12.32.02.51-.1.2-.15.32-.3.5-.14.17-.31.38-.44.51-.15.15-.3.3-.13.6.17.28.75 1.24 1.6 2 1.1 1 2.03 1.3 2.32 1.45.29.14.46.12.63-.07.17-.2.71-.83.9-1.12.19-.28.38-.23.63-.14.26.1 1.66.79 1.94.93.28.14.47.21.53.33.07.13.07.71-.17 1.39z"/></svg></a>
+<div id="lb" role="dialog" aria-modal="true" aria-label="Image viewer"><button aria-label="Close">×</button><img alt=""></div>
+
+<script>
+const $=s=>document.querySelector(s);
+$('#yr').textContent=new Date().getFullYear();
+const burger=$('#burger'),menu=$('#menu');
+burger.onclick=()=>{const o=menu.classList.toggle('open');burger.setAttribute('aria-expanded',o)};
+menu.querySelectorAll('a').forEach(a=>a.onclick=()=>{menu.classList.remove('open');burger.setAttribute('aria-expanded',false)});
+const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15});
+document.querySelectorAll('.rv,#bar').forEach(el=>io.observe(el));
+const lb=$('#lb'),lbi=lb.querySelector('img');
+document.querySelectorAll('.gal a').forEach(a=>a.onclick=e=>{e.preventDefault();lbi.src=a.href;lb.classList.add('on')});
+lb.onclick=()=>lb.classList.remove('on');
+document.addEventListener('keydown',e=>{if(e.key==='Escape')lb.classList.remove('on')});
+$('#qf').onsubmit=e=>{e.preventDefault();
+ const t=`Hello Wisejet Cranes, I'd like a quote.%0AName: ${encodeURIComponent($('#n').value)}%0APhone: ${encodeURIComponent($('#p').value)}%0AService: ${encodeURIComponent($('#s').value)}%0ALocation: ${encodeURIComponent($('#l').value)}%0ADetails: ${encodeURIComponent($('#m').value)}`;
+ window.open('https://wa.me/263718323920?text='+t,'_blank','noopener');};
+</script>
 </body>
 </html>
