@@ -43,11 +43,11 @@
   /* fleet explorer */
   const fleet = {
     light: { c: 'Light range', t: 'Compact mobile cranes', d: 'Quick to mobilise and set up. Well suited to building services, signage, utility maintenance and general site lifting where access is tight.', cap: '5 to 50 tonnes', use: 'Utility and light commercial lifts', note: 'Fast set-up',
-      v: '<line x1="10" y1="90" x2="90" y2="90" stroke="#3A4F66"/><rect x="22" y="68" width="34" height="22" rx="3" fill="#0A1D37" opacity=".12"/><circle cx="30" cy="90" r="4" fill="#0A1D37"/><circle cx="42" cy="90" r="4" fill="#0A1D37"/><circle cx="52" cy="90" r="4" fill="#0A1D37"/><line x1="36" y1="68" x2="80" y2="34" stroke="#FF5E14" stroke-width="3"/><line x1="80" y1="34" x2="80" y2="64" stroke="#0A1D37" stroke-dasharray="2,2"/>' },
+      img: 'https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-18-16-24-15-Copy.jpg' },
     medium: { c: 'Medium range', t: 'All-terrain hydraulic cranes', d: 'The workhorse range for structural steel, plant and equipment installation, and factory and warehouse work, with the reach and capacity most projects need.', cap: '50 to 120 tonnes', use: 'Steel erection and plant installation', note: 'Hydraulic outrigger base',
-      v: '<line x1="10" y1="90" x2="90" y2="90" stroke="#3A4F66"/><rect x="16" y="64" width="48" height="26" rx="3" fill="#0A1D37" opacity=".12"/><circle cx="22" cy="90" r="4" fill="#0A1D37"/><circle cx="31" cy="90" r="4" fill="#0A1D37"/><circle cx="40" cy="90" r="4" fill="#0A1D37"/><circle cx="49" cy="90" r="4" fill="#0A1D37"/><circle cx="58" cy="90" r="4" fill="#0A1D37"/><line x1="38" y1="64" x2="84" y2="16" stroke="#FF5E14" stroke-width="4"/><line x1="84" y1="16" x2="84" y2="56" stroke="#0A1D37" stroke-dasharray="2,2"/>' },
+      img: 'https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-15-16-40-30.jpg' },
     heavy: { c: 'Heavy range', t: 'High-capacity heavy lift cranes', d: 'For the largest loads, from industrial and mining equipment to major infrastructure components, with lifts planned and engineered around your site.', cap: '120 to 250 tonnes', use: 'Large industrial and infrastructure lifts', note: 'Planned and engineered lifts',
-      v: '<line x1="10" y1="90" x2="90" y2="90" stroke="#3A4F66"/><rect x="12" y="58" width="56" height="32" rx="4" fill="#0A1D37" opacity=".12"/><rect x="8" y="84" width="66" height="8" rx="2" fill="#0A1D37"/><line x1="30" y1="58" x2="90" y2="10" stroke="#FF5E14" stroke-width="5"/><line x1="90" y1="10" x2="90" y2="42" stroke="#0A1D37" stroke-width="2"/>' }
+      img: 'https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-20-14-35-55.jpg' }
   };
   const tabs = $$('.tab');
   tabs.forEach(tab => tab.addEventListener('click', () => {
@@ -55,7 +55,7 @@
     const f = fleet[tab.dataset.f];
     $('#fClass').textContent = f.c; $('#fTitle').textContent = f.t; $('#fDesc').textContent = f.d;
     $('#fCap').textContent = f.cap; $('#fUse').textContent = f.use; $('#fNote').textContent = f.note;
-    $('#fVis').innerHTML = f.v;
+    $('#fImg').src = f.img;
   }));
 
   /* estimator (indicative only) */
