@@ -46,7 +46,7 @@
       img: 'https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-18-16-24-15-Copy.jpg' },
     medium: { c: 'Medium range', t: 'All-terrain hydraulic cranes', d: 'The workhorse range for structural steel, plant and equipment installation, and factory and warehouse work, with the reach and capacity most projects need.', cap: '50 to 120 tonnes', use: 'Steel erection and plant installation', note: 'Hydraulic outrigger base',
       img: 'https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-15-16-40-30.jpg' },
-    heavy: { c: 'Heavy range', t: 'High-capacity heavy lift cranes', d: 'For the largest loads, from industrial and mining equipment to major infrastructure components, with lifts planned and engineered around your site.', cap: '120 to 250 tonnes', use: 'Large industrial and infrastructure lifts', note: 'Planned and engineered lifts',
+    heavy: { c: 'Heavy range', t: 'High-capacity heavy lift cranes', d: 'For the largest loads, from industrial and mining equipment to major infrastructure components, with lifts planned and engineered around your site.', cap: '120 to 300 tonnes', use: 'Large industrial and infrastructure lifts', note: 'Planned and engineered lifts',
       img: 'https://wisejetcranes.co.zw/wp-content/uploads/2023/11/PHOTO-2023-11-20-14-35-55.jpg' }
   };
   const tabs = $$('.tab');
@@ -61,7 +61,7 @@
   /* estimator (indicative only) */
   const L = $('#eLoad'), R = $('#eRad'), T = $('#eTerrain');
   if (L && R && T) {
-    const tiers = [[30, 'Light range crane', 'Up to roughly 30 tonne class'], [60, 'Light to medium crane', 'Roughly 30 to 60 tonne class'], [120, 'Medium range crane', 'Roughly 60 to 120 tonne class'], [200, 'Heavy range crane', 'Roughly 120 to 200 tonne class'], [Infinity, 'Heavy lift planning required', '200 tonne class and above']];
+    const tiers = [[30, 'Light range crane', 'Up to roughly 30 tonne class'], [60, 'Light to medium crane', 'Roughly 30 to 60 tonne class'], [120, 'Medium range crane', 'Roughly 60 to 120 tonne class'], [300, 'Heavy range crane', 'Roughly 120 to 300 tonne class'], [Infinity, 'Heavy lift planning required', '300 tonne class and above']];
     const ground = { solid: 'Standard set-up on firm ground', dirt: 'Ground check recommended', soft: 'Outrigger mats and ground assessment required' };
     let last = {};
     const calc = () => {
