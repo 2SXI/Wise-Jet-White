@@ -42,7 +42,11 @@ h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif;letter-spacing:-.02em;line-he
 #hdr{position:fixed;top:0;left:0;right:0;z-index:100;border-bottom:1px solid transparent;transition:background .3s,box-shadow .3s,border-color .3s}
 #hdr.scrolled{background:rgba(255,255,255,.96);backdrop-filter:blur(12px);border-color:var(--border);box-shadow:0 4px 24px rgba(10,29,55,.06)}
 .nav{height:80px;display:flex;align-items:center;justify-content:space-between;gap:24px}
-.logo img{height:46px;width:auto;background:#fff;border-radius:8px;padding:3px 8px}
+.logo img{height:46px;width:auto}
+.logo img.pill{background:#fff;border-radius:8px;padding:3px 8px}
+.logo .lg-top{display:block}.logo .lg-solid{display:none}
+#hdr.scrolled .lg-top{display:none}#hdr.scrolled .lg-solid{display:block}
+.logo:not(:has(.lg-top)) .lg-solid{display:block}
 .menu{display:flex;align-items:center;gap:28px}
 .menu a.l{font:500 14px 'Space Grotesk',sans-serif;color:rgba(255,255,255,.9);position:relative;padding-bottom:4px;transition:color .2s}
 .menu a.l::after{content:"";position:absolute;left:0;bottom:0;width:0;height:2px;background:currentColor;transition:width .3s}
