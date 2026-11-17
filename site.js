@@ -58,6 +58,54 @@
     $('#fImg').src = f.img;
   }));
 
+  /* fleet list: filter + build a quote selection */
+  const fbtn = $$('.fl-filters button');
+  fbtn.forEach(b => b.addEventListener('click', () => {
+    fbtn.forEach(x => { const on = x === b; x.classList.toggle('on', on); x.setAttribute('aria-pressed', on); });
+    $$('.unit').forEach(u => u.hidden = false); const rb = $('#flRange'); if (rb) rb.hidden = true;
+    $$('.fl-group').forEach(g => { g.hidden = b.dataset.f !== 'all' && g.dataset.cat !== b.dataset.f; });
+  }));
+
+  /* tabs -> filter the full list by size range */
+  const rangeName={light:'Light range (5 to 50 tonne class)',medium:'Medium range (50 to 120 tonne class)',heavy:'Heavy range (120 to 300 tonne class)'};
+  const setRange=r=>{
+    $$('.unit').forEach(u=>{u.hidden=!!r&&u.dataset.range!==r});
+    $$('.fl-group').forEach(g=>{g.hidden=!!r&&g.dataset.cat!=='cranes'});
+    const bar=$('#flRange'); if(!bar)return;
+    bar.hidden=!r; if(r)$('#flRangeTxt').textContent='Showing cranes in the '+rangeName[r];
+  };
+  $('#fRange')?.addEventListener('click',()=>{
+    const t=$('.tab[aria-selected=true]'); if(!t)return;
+    fbtn.forEach(x=>{const on=x.dataset.f==='cranes';x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});
+    setRange(t.dataset.f); $('#flStart').scrollIntoView({behavior:'smooth'});
+  });
+  $('#flRangeClr')?.addEventListener('click',()=>{setRange(null);fbtn.forEach(x=>{const on=x.dataset.f==='all';x.classList.toggle('on',on);x.setAttribute('aria-pressed',on)});$$('.fl-group').forEach(g=>g.hidden=false)});
+  /* photo thumbnails swap the main picture */
+  $$('.th').forEach(t=>t.addEventListener('click',()=>{const m=$('.ph > img',t.closest('.ph'));const i=$('img',t);if(m&&i){const s=m.src;m.src=i.src;i.src=s}}));
+  const pick = $('#flPick');
+  if (pick) {
+    const picked = new Map();
+    const render = () => {
+      const n = picked.size;
+      pick.hidden = n === 0;
+      $('#flCount').textContent = n + (n === 1 ? ' machine' : ' machines');
+      $('#flNames').textContent = [...picked.keys()].join(', ');
+    };
+    $$('.unit .add').forEach(btn => btn.addEventListener('click', () => {
+      const li = btn.closest('.unit'), name = li.dataset.name, on = !picked.has(name);
+      on ? picked.set(name, li.dataset.cat) : picked.delete(name);
+      btn.setAttribute('aria-pressed', on);
+      $('.t', btn).textContent = on ? 'Added' : 'Add to quote';
+      render();
+    }));
+    $('#flGo').addEventListener('click', () => {
+      const m = $('#fMsg'), s = $('#fSvc'), cats = [...picked.values()];
+      if (m) m.value = ('Machines needed: ' + [...picked.keys()].join('; ') + '.\n' + (m.value.startsWith('Machines needed:') ? m.value.split('\n').slice(1).join('\n') : m.value)).trim();
+      if (s && cats.includes('cranes')) s.value = 'Crane Hire';
+      else if (s && cats.every(c => c === 'haulage')) s.value = 'Specialised Transport';
+    });
+  }
+
   /* estimator (indicative only) */
   const L = $('#eLoad'), R = $('#eRad'), T = $('#eTerrain');
   if (L && R && T) {
