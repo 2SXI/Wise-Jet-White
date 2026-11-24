@@ -8,7 +8,7 @@
   const onScroll = () => {
     const y = window.scrollY, h = document.documentElement.scrollHeight - innerHeight;
     if (bar) bar.style.width = (h > 0 ? y / h * 100 : 0) + '%';
-    if (hdr && !solid) hdr.classList.toggle('scrolled', y > 40);
+    if (hdr) hdr.classList.toggle('scrolled', y > 40);
     if (topBtn) topBtn.classList.toggle('show', y > 600);
     const links = $$('.menu a.l[href^="#"]');
     if (links.length) {
