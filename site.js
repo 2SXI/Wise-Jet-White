@@ -26,6 +26,8 @@
   burger?.addEventListener('click', () => setDrawer(true));
   $('#drawer .x')?.addEventListener('click', () => setDrawer(false));
   $$('#drawer a').forEach(a => a.addEventListener('click', () => setDrawer(false)));
+  document.addEventListener('click', e => { if (drawer?.classList.contains('open') && !drawer.contains(e.target) && !burger.contains(e.target)) setDrawer(false); });
+  addEventListener('keydown', e => { if (e.key === 'Escape' && drawer?.classList.contains('open')) setDrawer(false); });
 
   /* reveal */
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } }), { threshold: .1 });
