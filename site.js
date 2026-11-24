@@ -143,7 +143,7 @@
   const lb = $('#lb');
   if (lb) {
     const img = $('img', lb);
-    $$('.gal a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); img.src = a.href; lb.classList.add('on'); }));
+    $$('.gal a').forEach(a => a.addEventListener('click', e => { e.preventDefault(); img.onerror = () => { if (a.dataset.fb && img.src !== a.dataset.fb) img.src = a.dataset.fb; }; img.src = a.href; lb.classList.add('on'); }));
     lb.addEventListener('click', () => lb.classList.remove('on'));
     addEventListener('keydown', e => { if (e.key === 'Escape') lb.classList.remove('on'); });
   }
