@@ -99,10 +99,11 @@
       render();
     }));
     $('#flGo').addEventListener('click', () => {
-      const m = $('#fMsg'), s = $('#fSvc'), cats = [...picked.values()];
-      if (m) m.value = ('Machines needed: ' + [...picked.keys()].join('; ') + '.\n' + (m.value.startsWith('Machines needed:') ? m.value.split('\n').slice(1).join('\n') : m.value)).trim();
-      if (s && cats.includes('cranes')) s.value = 'Crane Hire';
-      else if (s && cats.every(c => c === 'haulage')) s.value = 'Specialised Transport';
+      const cats = [...picked.values()];
+      let svc = '';
+      if (cats.includes('cranes')) svc = 'Crane Hire';
+      else if (cats.length && cats.every(c => c === 'haulage')) svc = 'Specialised Transport';
+      try { sessionStorage.setItem('wjPrefill', JSON.stringify({ msg: 'Machines needed: ' + [...picked.keys()].join('; ') + '.', svc })); } catch (e) {}
     });
   }
 
@@ -123,10 +124,8 @@
       last = { load, rad, tier: tier[1], terrain: T.options[T.selectedIndex].text };
     };
     [L, R, T].forEach(e => e.addEventListener('input', calc)); calc();
-    $('#ePrefill')?.addEventListener('click', e => {
-      e.preventDefault();
-      const m = $('#fMsg'); if (m) m.value = `Estimator result: ${last.load} tonne load at ${last.rad} m working radius, ground: ${last.terrain}. Indicative class: ${last.tier}.`;
-      $('#contact').scrollIntoView({ behavior: 'smooth' });
+    $('#ePrefill')?.addEventListener('click', () => {
+      try { sessionStorage.setItem('wjPrefill', JSON.stringify({ msg: `Estimator result: ${last.load} tonne load at ${last.rad} m working radius, ground: ${last.terrain}. Indicative class: ${last.tier}.`, svc: 'Crane Hire' })); } catch (e) {}
     });
   }
 
@@ -160,7 +159,14 @@
     const v = id => encodeURIComponent($(id).value.trim());
     const txt = `Hello Wisejet Cranes, I would like a quote.%0AName: ${v('#fName')}%0APhone: ${v('#fPhone')}%0AService: ${v('#fSvc')}%0ALocation: ${v('#fLoc')}%0ADetails: ${v('#fMsg')}`;
     open('https://wa.me/263718323920?text=' + txt, '_blank', 'noopener');
+    e.target.hidden = true; const t = $('#qfThanks'); if (t) { t.hidden = false; t.scrollIntoView({ behavior: 'smooth', block: 'center' }); }
   });
+  if ($('#qf')) {
+    try {
+      const p = JSON.parse(sessionStorage.getItem('wjPrefill') || 'null');
+      if (p) { const m = $('#fMsg'), sv = $('#fSvc'); if (m && p.msg) m.value = p.msg; if (sv && p.svc) sv.value = p.svc; sessionStorage.removeItem('wjPrefill'); }
+    } catch (e) {}
+  }
 
   const yr = $('#yr'); if (yr) yr.textContent = new Date().getFullYear();
 })();
